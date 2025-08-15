@@ -52,4 +52,4 @@ A simple personal landing page with a blog, built on the Next.js Pages Router tu
 - Build with `npm run build` and deploy to your host of choice (I Used Vercel). Importing the repo into Vercel auto-detects Next.js.
 
 ## Attribution
-- Based on the official [Next.js Pages Router Tutorial](https://nextjs.org/learn) and then customized.
+- Based on the official [Next.js Pages Router Tutorial](https://nextjs.org/learn) and then customized by me.
