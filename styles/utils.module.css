@@ -48,5 +48,24 @@
 }
 
 .lightText {
-  color: #666;
+  color: var(--muted-text);
+}
+
+@media (max-width: 480px) {
+  .heading2Xl {
+    font-size: 2rem;
+  }
+  .headingXl {
+    font-size: 1.6rem;
+  }
+  .headingLg {
+    font-size: 1.25rem;
+  }
+  .headingMd {
+    font-size: 1.05rem;
+  }
+  .listItem a {
+    display: inline-block;
+    padding: 4px 0; /* larger touch target */
+  }
 }

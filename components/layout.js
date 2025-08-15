@@ -3,18 +3,20 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import ThemeToggle from './ThemeToggle';
 
-const name = '[Your Name]';
-export const siteTitle = 'Next.js Sample Website';
+const name = 'Praneel';
+export const siteTitle = "Praneel's";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, showBackLink = true }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico?v=20250815" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="My personal blog website using Next.js"
         />
         <meta
           property="og:image"
@@ -26,6 +28,9 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className={styles.header}>
+        <div style={{ alignSelf: 'flex-end' }}>
+          <ThemeToggle />
+        </div>
         {home ? (
           <>
             <Image
@@ -59,9 +64,20 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {!home && showBackLink && (
         <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
+          <Link
+            href="/"
+            style={{
+              border: '1px solid var(--border)',
+              borderRadius: 10,
+              padding: '8px 12px',
+              textDecoration: 'none',
+              color: 'var(--text)'
+            }}
+          >
+            ← Back to home
+          </Link>
         </div>
       )}
     </div>
