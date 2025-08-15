@@ -18,7 +18,7 @@ export default function BlogIndex({ allPostsData }) {
   return (
     <Layout showBackLink={false}>
       <Head>
-        <title>{siteTitle} Blog</title>
+  <title>{`${siteTitle} Blog`}</title>
       </Head>
       <div style={{
         marginTop: '0.5rem',

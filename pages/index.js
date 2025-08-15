@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle} Landing Page</title>
+  <title>{`${siteTitle} Landing Page`}</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Hi, I’m Praneel.<br/> A FOSS Enthusiast and Cyber Security Lover, I also write Blogs! </p>
