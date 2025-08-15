@@ -64,7 +64,7 @@ html[data-theme='dark'] {
   --bg: #151617; /* gray-800 */
   --text: #e5e7eb; /* gray-200 */
   --muted-text: #9ca3af; /* gray-400 */
-  --border: #374151; /* gray-700 */
+  --border: #363b43; /* gray-700 */
   --link: var(--text); /* neutral link color in dark mode */
   --hover-bg: rgba(255, 255, 255, 0.06);
 }
