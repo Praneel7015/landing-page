@@ -9,7 +9,8 @@ import { useRouter } from 'next/router';
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    router.prefetch('/blog').catch(() => {});
+  router.prefetch('/blog').catch(() => {});
+  router.prefetch('/projects').catch(() => {});
   }, [router]);
   return (
     <Layout home>
@@ -24,9 +25,12 @@ export default function Home() {
           <Link className={linksStyles.linkButton} href="/blog" prefetch>
             Blog
           </Link>
+          <Link className={linksStyles.linkButton} href="/projects" prefetch>
+            Projects
+          </Link>
           <a className={linksStyles.linkButton} href="https://github.com/Praneel7015">Github</a>
           <a className={linksStyles.linkButton} href="https://www.linkedin.com/in/praneel-sindhole/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className={linksStyles.linkButton} href="#" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a className={linksStyles.linkButton} href="https://github.com/Praneel7015/blink/blob/master/Praneel_resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
           <a className={linksStyles.linkButton} href="mailto:praneelsindhole2005@gmail.com">E-Mail</a>
           <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
         </div>

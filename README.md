@@ -3,7 +3,7 @@
 A simple personal landing page with a blog, built on the Next.js Pages Router tutorial and customized to my liking.
 
 ### Why I made this
-- I was doing the official Next.js Pages Router Tutorial and then thought i modify and use it, so i modified the layout, styling, and structure to fit my use (landing page, dark/light theme toggle, Linktree-style links, and a blog Page).
+- I was doing the official Next.js Pages Router Tutorial and then thought i can modify and use it, so i modified the layout, styling, and structure to fit my use (landing page, dark/light theme toggle, Linktree-style links, and a blog Page).
 
 ## How to use (fork/clone + run)
 1. Fork this repository on GitHub (or) Directly Clone the Repository.
