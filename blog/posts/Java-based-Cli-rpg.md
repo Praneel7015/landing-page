@@ -3,7 +3,7 @@ title: "Java Based Command Line Interface RPG!"
 date: "2025-08-11"
 ---
 
-(It was originally posted on my previous blog and has been updated here.)
+(It was originally posted on my previous blog site and has been moved here.)
 
 It has been a long time since I last worked on a project in Java. Most of my use of the language in recent years has been for coursework, solving algorithm problems, and not enjoying it very much. Java always felt heavy to me, and I associated it with frustration more than anything else. When my senior suggested making a small RPG in Java using only the command line, I wasn’t expecting much. But once I started, it became a different experience. I realized that building something complete with even the most basic concepts can change how you see the language. For the first time in a while, I was using Java not because I was forced to, but because I wanted to see what I could actually make with it.
 
