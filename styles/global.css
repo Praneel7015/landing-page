@@ -36,6 +36,15 @@ img {
   display: block;
 }
 
+/* Underline links inside rendered markdown content */
+.markdown a {
+  text-decoration: underline;
+}
+.markdown a:hover {
+  text-decoration-thickness: from-font;
+  text-underline-offset: 2px;
+}
+
 /* Prevent long strings from causing horizontal scroll */
 a, p, li, code {
   overflow-wrap: anywhere;

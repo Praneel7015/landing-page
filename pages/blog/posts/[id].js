@@ -27,7 +27,7 @@ export default function Post({ postData }) {
         <div className={utilStyles.lightText}>
           <Date dateString={postData.date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+  <div className="markdown" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
       <div style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
         <Link href="/blog" style={{
