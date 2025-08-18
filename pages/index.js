@@ -18,21 +18,21 @@ export default function Home() {
   <title>{`${siteTitle} Landing Page`}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Hi, I’m Praneel.<br/> A FOSS Enthusiast and Cyber Security Lover, I also write Blogs! </p>
+        <p>Hi, I'm Praneel.<br/> A FOSS Enthusiast and Cyber Security Lover, I also write Blogs! </p>
       </section>
       <section className={utilStyles.headingMd}>
         <div className={linksStyles.container}>
           <Link className={linksStyles.linkButton} href="/blog" prefetch>
-            Blog
+            Blog Page
           </Link>
           <Link className={linksStyles.linkButton} href="/projects" prefetch>
             Projects
           </Link>
           <a className={linksStyles.linkButton} href="https://github.com/Praneel7015">Github</a>
           <a className={linksStyles.linkButton} href="https://www.linkedin.com/in/praneel-sindhole/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className={linksStyles.linkButton} href="https://github.com/Praneel7015/blink/blob/master/Praneel_resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-          <a className={linksStyles.linkButton} href="mailto:praneelsindhole2005@gmail.com">E-Mail</a>
           <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
+          <a className={linksStyles.linkButton} href="mailto:p70157015@gmail.com">Contact</a>
+          <a className={linksStyles.linkButton} href="https://cal.com/praneels">Cal.com</a>
         </div>
       </section>
     </Layout>

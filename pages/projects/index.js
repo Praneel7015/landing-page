@@ -41,6 +41,7 @@ export default function ProjectsPage({ projects }) {
                     {p.description}
                   </small>
                 )}
+              
                 {Array.isArray(p.tags) && p.tags.length > 0 && (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                     {p.tags.map((t) => (

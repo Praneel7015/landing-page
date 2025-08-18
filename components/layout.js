@@ -100,7 +100,7 @@ export default function Layout({ children, home, showBackLink = true, showCountd
           justifyContent: 'center'
         }}>
           <span
-            aria-label="Countdown to 22 Aug 2026, 5:00 PM IST"
+            aria-label="/countdown"
             suppressHydrationWarning
             style={{
               color: 'var(--text)',

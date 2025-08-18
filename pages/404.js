@@ -6,7 +6,7 @@ export default function Custom404() {
   return (
   <Layout showBackLink={false} showCountdownFooter={false}>
       <Head>
-        <title>404 – Page not found</title>
+        <title>404 - Page not found</title>
         <meta name="robots" content="noindex" />
       </Head>
       <div style={{
@@ -20,7 +20,7 @@ export default function Custom404() {
           color: 'var(--text)'
         }}>404</div>
         <p style={{ color: 'var(--muted-text)', marginTop: '0.75rem' }}>
-          Sorry, we couldn’t find that page.
+          Sorry, we couldn't find that page.
         </p>
         <div style={{
           marginTop: '1.5rem',
