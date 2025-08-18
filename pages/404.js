@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 export default function Custom404() {
   return (
-  <Layout showBackLink={false}>
+  <Layout showBackLink={false} showCountdownFooter={false}>
       <Head>
         <title>404 – Page not found</title>
         <meta name="robots" content="noindex" />

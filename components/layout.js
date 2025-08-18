@@ -4,11 +4,40 @@ import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
+import { useEffect, useState } from 'react';
 
 const name = 'Praneel';
 export const siteTitle = "Praneel's";
 
-export default function Layout({ children, home, showBackLink = true }) {
+const TARGET_UTC = Date.UTC(2026, 7, 22, 11, 30, 0); // 22 Aug 2026, 17:00 IST = 11:30 UTC
+
+function pad2(n) {
+  return String(n).padStart(2, '0');
+}
+
+function getTimeParts() {
+  const now = Date.now();
+  let diff = Math.max(0, TARGET_UTC - now);
+  const dayMs = 24 * 60 * 60 * 1000;
+  const hourMs = 60 * 60 * 1000;
+  const minMs = 60 * 1000;
+  const days = Math.floor(diff / dayMs);
+  diff -= days * dayMs;
+  const hours = Math.floor(diff / hourMs);
+  diff -= hours * hourMs;
+  const minutes = Math.floor(diff / minMs);
+  diff -= minutes * minMs;
+  const seconds = Math.floor(diff / 1000);
+  return { days, hours, minutes, seconds };
+}
+
+export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true }) {
+  const [parts, setParts] = useState(getTimeParts());
+  useEffect(() => {
+    if (!showCountdownFooter) return;
+    const id = setInterval(() => setParts(getTimeParts()), 1000);
+    return () => clearInterval(id);
+  }, [showCountdownFooter]);
   return (
     <div className={styles.container}>
       <Head>
@@ -64,6 +93,26 @@ export default function Layout({ children, home, showBackLink = true }) {
         )}
       </header>
       <main>{children}</main>
+      {showCountdownFooter && (
+        <div style={{
+          marginTop: '2rem',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+          <span
+            aria-label="Countdown to 22 Aug 2026, 5:00 PM IST"
+            suppressHydrationWarning
+            style={{
+              color: 'var(--text)',
+              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+              fontWeight: 700,
+              fontSize: '1.25rem'
+            }}
+          >
+            {parts.days}:{pad2(parts.hours)}:{pad2(parts.minutes)}:{pad2(parts.seconds)}
+          </span>
+        </div>
+      )}
       {!home && showBackLink && (
         <div className={styles.backToHome}>
           <Link
