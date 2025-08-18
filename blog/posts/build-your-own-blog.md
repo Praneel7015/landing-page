@@ -38,7 +38,7 @@ Open http://localhost:3000
 - Change your name in `components/layout.js` (the `name` const)
 - Update the home page intro and your links in `pages/index.js`
 - Add/change favicon at `public/favicon.ico`
-- Add new posts to the `posts/` folder as Markdown files with front matter:
+- Add new posts to the `blog/posts/` folder as Markdown files with front matter:
 
 ```
 ---
@@ -65,4 +65,18 @@ npm run build
 
 - Use the dark/light toggle in the header to preview themes.
 - Tweak theme colors in `styles/global.css` under CSS variables.
-- Blog list lives at `/blog`; posts are rendered from `posts/`.
+- Blog list lives at `/blog`; posts are rendered from `blog/posts/`.
+
+## Images in posts
+
+Place images in the `public/` folder so they can be served statically, then reference them with an absolute path starting with `/`.
+
+Example:
+
+```
+![My profile](/images/profile.jpg)
+```
+
+Result:
+
+![My profile](/images/profile.jpg)

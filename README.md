@@ -32,9 +32,11 @@ A simple personal landing page with a blog, built on the Next.js Pages Router tu
 - Landing page intro and links: edit `pages/index.js`.
 - Favicon: replace `public/favicon.ico`.
 - Theme colors: adjust CSS variables in `styles/global.css`.
+- Blog content: add markdown files under `blog/posts/`.
+- Images in posts: put images in `public/` and reference as `![alt](/path/in/public.png)`.
 
 ### Write blog posts (Markdown)
-- Posts live as Markdown files in the `posts/` folder (not `pages/posts`).
+- Posts live as Markdown files in the `blog/posts/` folder (not `pages/posts`).
 - Each post needs front matter at the top:
 
 	```
@@ -46,7 +48,7 @@ A simple personal landing page with a blog, built on the Next.js Pages Router tu
 	Your content here in Markdown.
 	```
 
-- The blog index is at `/blog`. Each markdown file becomes a post at `/posts/[id]`, where `[id]` is the filename (without `.md`).
+- The blog index is at `/blog`. Each markdown file becomes a post at `/blog/posts/[id]`, where `[id]` is the filename (without `.md`).
 
 ### Deploy
 - Build with `npm run build` and deploy to your host of choice (I Used Vercel). Importing the repo into Vercel auto-detects Next.js.
