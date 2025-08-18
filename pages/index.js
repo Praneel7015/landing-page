@@ -11,6 +11,7 @@ export default function Home() {
   useEffect(() => {
   router.prefetch('/blog').catch(() => {});
   router.prefetch('/projects').catch(() => {});
+  router.prefetch('/about').catch(() => {});
   }, [router]);
   return (
     <Layout home>
@@ -24,6 +25,9 @@ export default function Home() {
         <div className={linksStyles.container}>
           <Link className={linksStyles.linkButton} href="/blog" prefetch>
             Blog Page
+          </Link>
+          <Link className={linksStyles.linkButton} href="/about" prefetch>
+            About
           </Link>
           <Link className={linksStyles.linkButton} href="/projects" prefetch>
             Projects
