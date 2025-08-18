@@ -76,3 +76,4 @@ Example:
 Result:
 
 ![My profile](/images/profile.jpg)
+
