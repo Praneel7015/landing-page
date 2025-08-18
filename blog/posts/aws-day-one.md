@@ -4,7 +4,7 @@ date: "2025-08-16"
 ---
 ![Setting Up Your AWS Free Tier Account](https://prod-assets.cosmic.aws.dev/a/31Ij0PVS5EItadUDGpkkiIiN003/free.webp)
 
-[Link to Article](https://builder.aws.com/content/2lYwQJ47Sq8C76VkFUDisXB7VnN/secure-foundation-setting-up-your-aws-free-tier-account)
+[Link to the Article!](https://builder.aws.com/content/2lYwQJ47Sq8C76VkFUDisXB7VnN/secure-foundation-setting-up-your-aws-free-tier-account)
 
 I started the AWS Builder Challenge today. The first step was to set up an AWS Free Tier account and go through the initial security and billing precautions. The article made it sound like a 30-minute task, but in reality it took me much longer. There are many small steps, and each requires verifications, so it’s not exactly quick.
 
@@ -16,3 +16,4 @@ There were some inconveniences.I needed to show more ID Proof, Payment verificat
 
 
 By the end of this step, I had my AWS account with MFA enabled, a separate IAM admin user for daily work, and a budget cap of $5 with alerts. The in-detail guide (credits to [Ana](https://builder.aws.com/community/@ana) for the wonderful guide ) made sure I didn’t miss anything, even if the process dragged longer than i wouldve liked.
+
