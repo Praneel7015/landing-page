@@ -31,8 +31,10 @@ function getTimeParts() {
 
 export default function CountdownPage() {
   const [{ days, hours, minutes, seconds, done }, setParts] = useState(getTimeParts());
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
     if (done) return;
     const id = setInterval(() => {
       setParts(getTimeParts());
@@ -52,12 +54,19 @@ export default function CountdownPage() {
       </section>
 
       <section style={{ marginTop: '1rem', textAlign: 'center' }}>
-        <div aria-label="Countdown" style={{
-          fontWeight: 800,
-          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-          fontSize: '4rem'
-        }}>
-          {days}:{pad2(hours)}:{pad2(minutes)}:{pad2(seconds)}
+        <div
+          aria-label="Countdown"
+          className="countdownClock"
+          style={{
+            fontWeight: 800,
+            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+            fontSize: '4rem',
+            maxWidth: '100vw',
+            overflowX: 'auto',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          {hasMounted ? `${days}:${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}` : ''}
         </div>
         <div style={{ color: 'var(--muted-text)', marginTop: '0.25rem' }}>DD:HH:MM:SS</div>
       </section>
