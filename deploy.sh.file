@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# --- Configuration ---
+
+# The name of your S3 bucket.
+S3_BUCKET_NAME="your-bucket-name"
+
+# The ID of your CloudFront distribution.
+CLOUDFRONT_DISTRIBUTION_ID="your-distribution-id"
+
+# --- Deployment ---
+
+# 1. Build the Next.js application.
+echo "Building Next.js application..."
+npm run build
+
+# 2. Export the application to static files.
+echo "Exporting application to static files..."
+npm run export
+
+# 3. Upload the contents of the 'out' directory to the S3 bucket.
+echo "Uploading files to S3 bucket: $S3_BUCKET_NAME"
+aws s3 sync out/ s3://$S3_BUCKET_NAME --delete
+
+# 4. Create a CloudFront invalidation to refresh the cache.
+echo "Creating CloudFront invalidation for distribution: $CLOUDFRONT_DISTRIBUTION_ID"
+aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+echo "Deployment successful!"
