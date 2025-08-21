@@ -5,7 +5,7 @@ date: "2025-08-21"
 
 This guide provides a Step‑by‑step instructions to redeem a one‑year student domain (e.g., .me, .tech) via the GitHub Student Developer Pack and point it to your Amplify site.
 
-![YES](https://tenor.com/search/yessss-gifs)
+![YES](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZ1MGhlbWd2YnIyeGFvb2J3OG15aXQycjFjeWI5N29ydW43dzV5bCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DffShiJ47fPqM/giphy.gif)
 
 **DISCLOSURE:** I am not affiliated with Amazon, AWS, GitHub, .TECH, Namecheap, Name.com, or any related companies. This is a student guide based on publicly available information.
 
