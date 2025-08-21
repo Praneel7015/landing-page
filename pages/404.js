@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/layout';
+import linksStyles from '../styles/links.module.css';
 
 export default function Custom404() {
   return (
@@ -29,20 +30,8 @@ export default function Custom404() {
           justifyContent: 'center',
           flexWrap: 'wrap',
         }}>
-          <Link href="/" style={{
-            border: '1px solid var(--border)',
-            borderRadius: 10,
-            padding: '10px 14px',
-            textDecoration: 'none',
-            color: 'var(--text)'
-          }}>Go Home</Link>
-          <Link href="/blog" style={{
-            border: '1px solid var(--border)',
-            borderRadius: 10,
-            padding: '10px 14px',
-            textDecoration: 'none',
-            color: 'var(--text)'
-          }}>View Blog</Link>
+          <Link className={linksStyles.linkButton} href="/">Go Home</Link>
+          <Link className={linksStyles.linkButton} href="/blog">View Blog</Link>
         </div>
       </div>
     </Layout>

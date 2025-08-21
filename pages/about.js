@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
+import linksStyles from '../styles/links.module.css';
+
 
 export default function AboutPage() {
   return (
@@ -24,16 +26,31 @@ export default function AboutPage() {
         <h2 className={utilStyles.headingLg}>About Me</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <p>
-            I'm a FOSS enthusiast, cybersecurity learner and linux user. I also  enjoy building things and sometimes writing about things I learn.
-            </p><p>
-            I lead my College's Open Source Club, MUKTI and Conduct Events Open Source Related.
+            Hi, I'm Praneel. I'm a Computer Science and Engineering student in my third year, with a strong interest in free and open-source technology.
+          <br/>
+          <br/>
+            My main areas of focus are IoT and electronics, programming for FOSS projects, and cybersecurity. What drives me is the idea of building projects and products that people actually use and that make a positive impact.
+          <br/>
+          <br/>
+            I currently lead my college's FOSS club, Mukti!, where we organize events and seminars around open-source technology. Feel free to check out our work.
+          <br/>
+          <br/>
+            Beyond tech, I enjoy playing video games, Tennis, and other sports. I also spend alot of my free time at the gym.
+          <br/>
+          <br/>
+            If you'd like to get in touch, just click the contact button below!
           </p>
-          <p>
-            Outside tech, I like to Game, tinker, and contributing to Open- Source communities.
-          </p>
-          <p>
-            Want to connect? Reach out via the links on the home page.
-          </p>
+          <div style={{
+          marginTop: '1.5rem',
+          display: 'flex',
+          gap: '10px',
+          justifyContent: 'flex-start',
+          flexWrap: 'wrap',
+        }}>
+          <Link className={linksStyles.linkButton} href="mailto:p70157015@gmail.com" style={{ minWidth: 180 }}>
+            Contact
+          </Link>
+        </div>
         </div>
       </section>
     </Layout>
