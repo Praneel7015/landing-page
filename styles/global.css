@@ -80,6 +80,11 @@ a, p, li, code {
   --border: #e5e7eb; /* gray-200 */
   --link: #0070f3;
   --hover-bg: rgba(0, 0, 0, 0.04);
+  /* Status colors (light) */
+  --success-text: #065f46; /* emerald-900 */
+  --success-bg: rgba(16, 185, 129, 0.12);
+  --error-text: #7f1d1d; /* red-900 */
+  --error-bg: rgba(239, 68, 68, 0.12);
 }
 
 html[data-theme='dark'] {
@@ -89,6 +94,11 @@ html[data-theme='dark'] {
   --border: #363b43; /* gray-700 */
   --link: var(--text); /* neutral link color in dark mode */
   --hover-bg: rgba(255, 255, 255, 0.06);
+  /* Status colors (dark - brighter for contrast) */
+  --success-text: #34d399; /* emerald-400 */
+  --success-bg: rgba(16, 185, 129, 0.22);
+  --error-text: #f87171; /* red-400 */
+  --error-bg: rgba(239, 68, 68, 0.22);
 }
 
 body {

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Prefer configuring via env: NEXT_PUBLIC_CONTACT_LAMBDA_URL
 const LAMBDA_URL = process.env.NEXT_PUBLIC_CONTACT_LAMBDA_URL || '';
@@ -14,7 +14,19 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [formMessage, setFormMessage] = useState({ text: '', type: '' }); // type: 'success' | 'error'
 
+  const messageRef = useRef(null);
+
   const resetMessage = () => setFormMessage({ text: '', type: '' });
+
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+  const scrollToMessage = () => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const showMessage = (text, type) => {
     setFormMessage({ text, type });
@@ -22,9 +34,22 @@ export default function Contact() {
     setTimeout(() => setFormMessage({ text: '', type: '' }), 10000);
   };
 
+  useEffect(() => {
+    if (formMessage.text) {
+      scrollToMessage();
+    }
+  }, [formMessage.text]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     resetMessage();
+
+    // Validate email format
+    if (!isValidEmail(email)) {
+      showMessage('Please enter a valid email address.', 'error');
+      return;
+    }
+
     if (!LAMBDA_URL) {
       showMessage('Contact endpoint is not configured.', 'error');
       return;
@@ -82,8 +107,8 @@ export default function Contact() {
     borderRadius: 10,
     padding: '10px 12px',
     marginTop: '10px',
-    color: type === 'success' ? '#065f46' : '#7f1d1d', // darker green/red text
-    backgroundColor: type === 'success' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)', // translucent for both themes
+    color: type === 'success' ? 'var(--success-text)' : 'var(--error-text)',
+    backgroundColor: type === 'success' ? 'var(--success-bg)' : 'var(--error-bg)',
     fontWeight: 600,
   });
 
@@ -102,6 +127,7 @@ export default function Contact() {
           id="form-message"
           role="status"
           aria-live="polite"
+          ref={messageRef}
           style={messageBoxStyle(formMessage.type)}
         >
           {formMessage.text}
@@ -133,6 +159,9 @@ export default function Contact() {
               onChange={(e) => setEmail(e.target.value)}
               style={inputStyle}
               placeholder="you@example.com"
+              inputMode="email"
+              autoComplete="email"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
             />
           </div>
 
