@@ -1,5 +1,5 @@
 ---
-title: "Day 5 – Professional Deployment with GitHub & Amplify"
+title: 'Day 5 of AWS Builder Challenge #2,"Professional Deployment-GitHub, Amplify, and Modern Web Development" '
 date: "2025-08-21"
 ---
 
