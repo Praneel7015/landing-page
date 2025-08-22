@@ -12,6 +12,7 @@ export default function Home() {
   router.prefetch('/blog').catch(() => {});
   router.prefetch('/projects').catch(() => {});
   router.prefetch('/about').catch(() => {});
+  router.prefetch('/contact').catch(() => {});
   }, [router]);
   return (
     <Layout home>
@@ -35,8 +36,9 @@ export default function Home() {
           <a className={linksStyles.linkButton} href="https://github.com/Praneel7015">Github</a>
           <a className={linksStyles.linkButton} href="https://www.linkedin.com/in/praneel-sindhole/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
-          <a className={linksStyles.linkButton} href="mailto:p70157015@gmail.com">Contact</a>
-          <a className={linksStyles.linkButton} href="https://cal.com/praneels">Cal.com</a>
+          <Link className={linksStyles.linkButton} href="/contact" prefetch>
+            Contact
+          </Link>
         </div>
       </section>
     </Layout>

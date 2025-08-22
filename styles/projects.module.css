@@ -8,8 +8,6 @@
   transition: background-color 0.12s ease, color 0.12s ease;
 }
 
-/* Hover highlight removed per request */
-
 .projectLink:focus-visible {
   outline: 2px solid var(--border);
   outline-offset: 2px;

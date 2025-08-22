@@ -1,0 +1,165 @@
+import Head from 'next/head';
+import Layout, { siteTitle } from '../components/layout';
+import utilStyles from '../styles/utils.module.css';
+import linksStyles from '../styles/links.module.css';
+import { useState } from 'react';
+
+// Prefer configuring via env: NEXT_PUBLIC_CONTACT_LAMBDA_URL
+const LAMBDA_URL = process.env.NEXT_PUBLIC_CONTACT_LAMBDA_URL || '';
+
+export default function Contact() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [formMessage, setFormMessage] = useState({ text: '', type: '' }); // type: 'success' | 'error'
+
+  const resetMessage = () => setFormMessage({ text: '', type: '' });
+
+  const showMessage = (text, type) => {
+    setFormMessage({ text, type });
+    // Auto-hide after 10s
+    setTimeout(() => setFormMessage({ text: '', type: '' }), 10000);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    resetMessage();
+    if (!LAMBDA_URL) {
+      showMessage('Contact endpoint is not configured.', 'error');
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(LAMBDA_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+      if (res.ok) {
+        showMessage('Message sent successfully! Thank you for reaching out.', 'success');
+        setName('');
+        setEmail('');
+        setMessage('');
+      } else {
+        showMessage('Failed to send message. Please try again.', 'error');
+      }
+    } catch (err) {
+      showMessage('Network error. Please check your connection and try again.', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Reusable input styles using theme variables
+  const inputStyle = {
+    width: '100%',
+    padding: '10px 12px',
+    border: '1px solid var(--border)',
+    borderRadius: 10,
+    background: 'var(--bg)',
+    color: 'var(--text)',
+    fontSize: '1rem',
+  };
+
+  const labelStyle = {
+    fontWeight: 600,
+    marginBottom: 6,
+    color: 'var(--text)'
+  };
+
+  const formGroupStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 6,
+  };
+
+  const messageBoxStyle = (type) => ({
+    display: formMessage.text ? 'block' : 'none',
+    border: '1px solid var(--border)',
+    borderRadius: 10,
+    padding: '10px 12px',
+    marginTop: '10px',
+    color: type === 'success' ? '#065f46' : '#7f1d1d', // darker green/red text
+    backgroundColor: type === 'success' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)', // translucent for both themes
+    fontWeight: 600,
+  });
+
+  return (
+    <Layout showBackLink showCountdownFooter={false}>
+      <Head>
+        <title>{`Contact | ${siteTitle}`}</title>
+      </Head>
+
+      <section className={utilStyles.headingMd}>
+        <h3 className={utilStyles.headingLg} style={{ marginTop: 0 }}>Get In Touch</h3>
+        <p className={utilStyles.lightText}>Have a question or want to connect? Send me a message!</p>
+
+        {/* Form message container */}
+        <div
+          id="form-message"
+          role="status"
+          aria-live="polite"
+          style={messageBoxStyle(formMessage.type)}
+        >
+          {formMessage.text}
+        </div>
+
+        <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 12 }}>
+          <div className="form-group" style={formGroupStyle}>
+            <label htmlFor="name" style={labelStyle}>Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              style={inputStyle}
+              placeholder="Your name"
+            />
+          </div>
+
+          <div className="form-group" style={formGroupStyle}>
+            <label htmlFor="email" style={labelStyle}>Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={inputStyle}
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <div className="form-group" style={formGroupStyle}>
+            <label htmlFor="message" style={labelStyle}>Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows={5}
+              required
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              style={{ ...inputStyle, resize: 'vertical' }}
+              placeholder="How can I help?"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={linksStyles.linkButton}
+            disabled={loading}
+            style={{ alignSelf: 'flex-start', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit' }}
+          >
+            {loading ? 'Sending...' : 'Send Message'}
+          </button>
+        </form>
+      </section>
+    </Layout>
+  );
+}
