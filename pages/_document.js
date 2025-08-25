@@ -11,10 +11,21 @@ const setInitialTheme = `
   }
 })();`;
 
+const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+const umamiScriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL;
+
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        {umamiWebsiteId && umamiScriptUrl && (
+          <script
+            defer
+            src={umamiScriptUrl}
+            data-website-id={umamiWebsiteId}
+          />
+        )}
+      </Head>
       <body>
         <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
         <Main />
