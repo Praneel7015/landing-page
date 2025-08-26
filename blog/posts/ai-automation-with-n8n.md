@@ -1,4 +1,5 @@
---- title: "AI Automation with n8n"
+--- 
+title: "AI Automation with n8n"
 date: "2025-08-26"
 ---
 
