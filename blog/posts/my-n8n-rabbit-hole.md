@@ -15,6 +15,6 @@ I also included a Date & Time tool to automatically get the current month, year,
 
 Currently, n8n is hosted on my laptop in a Docker container with my workflow automating this entire process. I'm now looking for the best and most cost-effective way to host it online.
 
-If you have any ideas, please let me know via [my contact page](https://www.praneel.tech/contact).
+If you have any ideas, please let me know via [my contact page](/contact).
 
 Thanks for Reading!
