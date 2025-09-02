@@ -24,6 +24,7 @@ export default function Home() {
       </section>
       <section className={utilStyles.headingMd}>
         <div className={linksStyles.container}>
+          <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
           <Link className={linksStyles.linkButton} href="/blog" prefetch>
             Blog Page
           </Link>
@@ -35,9 +36,11 @@ export default function Home() {
           </Link>
           <a className={linksStyles.linkButton} href="https://github.com/Praneel7015">Github</a>
           <a className={linksStyles.linkButton} href="https://www.linkedin.com/in/praneel-sindhole/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
           <Link className={linksStyles.linkButton} href="/contact" prefetch>
             Contact
+          </Link>
+          <Link className={linksStyles.linkButton} href="/chatbot" prefetch>
+            Praneel-Bot
           </Link>
         </div>
       </section>

@@ -31,7 +31,7 @@ function getTimeParts() {
   return { days, hours, minutes, seconds };
 }
 
-export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true }) {
+export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true, compactHeader = false }) {
   const [parts, setParts] = useState(getTimeParts());
   useEffect(() => {
     if (!showCountdownFooter) return;
@@ -60,7 +60,7 @@ export default function Layout({ children, home, showBackLink = true, showCountd
         <div style={{ alignSelf: 'flex-end' }}>
           <ThemeToggle />
         </div>
-        {home ? (
+        {compactHeader ? null : home ? (
           <>
             <Image
               priority
