@@ -33,8 +33,8 @@ export default function ChatbotPage() {
       id: 'welcome',
       sender: 'bot',
       html: `<div class="markdown" style="text-align:center; color: var(--muted-text);">
-        <h3 style="color: var(--text); margin-bottom: 0.25rem; font-weight: 700;">👋 Welcome</h3>
-        <p style="font-size: 0.95rem;">Ask me about workflows, automation, code, or anything you need help with.</p>
+        <h4 style="color: var(--text); margin-bottom: 0.25rem; font-weight: 700;">Hi There👋 I am Praneel-Bot!</h3>
+        <p style="font-size: 0.95rem;">This is the start of our legendary conversation!</p>
       </div>`
     }
   ]);
@@ -73,7 +73,7 @@ export default function ChatbotPage() {
     return () => window.removeEventListener('resize', update);
   }, []);
 
-  // Smooth-scroll to bottom when messages or typing changes
+  // Smooth-scrolling to the bottom when messages or typing changes
   useEffect(() => {
     const sc = scrollRef.current;
     if (!sc) return;
@@ -93,7 +93,7 @@ export default function ChatbotPage() {
     const text = input.trim();
     if (!text || loading) return;
 
-    // push user message
+    // push the users message
     pushMessage({ sender: 'user', text, time: timeNow() });
     setInput('');
     setLoading(true);
@@ -189,6 +189,14 @@ export default function ChatbotPage() {
       textAlign: owner === 'user' ? 'right' : 'left',
       width: '100%'
     }),
+    metaAvatar: {
+      width: 18,
+      height: 18,
+      borderRadius: 999,
+      objectFit: 'cover',
+      display: 'block',
+      border: '1px solid var(--border)'
+    },
     bubble: (owner) => ({
       padding: '10px 12px',
       borderRadius: 14,
@@ -255,10 +263,8 @@ export default function ChatbotPage() {
       </Head>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-  {/* heading intentionally removed for a cleaner look */}
 
         <div style={styles.pane}>
-          {/* Header inside the pane */}
           <div style={styles.header}>
             <div style={styles.headerLeft}>
               <img src="/images/profile.jpg" width={56} height={56} alt="Praneel" style={styles.avatar} />
@@ -274,6 +280,11 @@ export default function ChatbotPage() {
               {messages.map((m) => (
                 <div key={m.id} style={{ ...styles.messageRow, ...styles.rowAlign(m.sender) }}>
                   <div style={styles.meta(m.sender)}>
+                    {m.sender === 'user' ? (
+                      <img src="/images/profile-photo.svg" alt="You" style={styles.metaAvatar} />
+                    ) : (
+                      <img src="/images/profile.jpg" alt="Praneel-Bot" style={styles.metaAvatar} />
+                    )}
                     <span style={styles.author}>{m.sender === 'user' ? 'You' : 'Praneel-Bot'}</span>
                     {m.time && <span style={styles.time}>{m.time}</span>}
                   </div>
@@ -287,12 +298,13 @@ export default function ChatbotPage() {
               {typing && (
                 <div style={{ ...styles.messageRow, ...styles.rowAlign('bot') }}>
                   <div style={styles.meta('bot')}>
+                    <img src="/images/profile.jpg" alt="Praneel-Bot" style={styles.metaAvatar} />
                     <span style={styles.author}>Praneel-Bot</span>
                     <span style={styles.time}>{timeNow()}</span>
                   </div>
                   <div style={styles.bubble('bot')}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <span style={styles.typing}>Praneel-Bot is typing</span>
+                      <span style={styles.typing}>typing</span>
                       <span className="typingDots" aria-hidden>
                         <span className="typingDot" />
                         <span className="typingDot" />
