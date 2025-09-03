@@ -33,7 +33,7 @@ export default function ChatbotPage() {
       id: 'welcome',
       sender: 'bot',
       html: `<div class="markdown" style="text-align:center; color: var(--muted-text);">
-        <h4 style="color: var(--text); margin-bottom: 0.25rem; font-weight: 700;">Hi There👋 I am Praneel-Bot!</h3>
+        <h4 style="color: var(--text); margin-bottom: 0.25rem; font-weight: 700;">Hi There👋 I am Praneel-Bot!</h4>
         <p style="font-size: 0.95rem;">This is the start of our legendary conversation!</p>
       </div>`
     }
