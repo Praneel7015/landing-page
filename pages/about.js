@@ -47,7 +47,7 @@ export default function AboutPage() {
           justifyContent: 'flex-start',
           flexWrap: 'wrap',
         }}>
-          <Link className={linksStyles.linkButton} href="mailto:p70157015@gmail.com" style={{ minWidth: 180 }}>
+                    <Link className={linksStyles.linkButton} href="/contact" prefetch>
             Contact
           </Link>
         </div>
