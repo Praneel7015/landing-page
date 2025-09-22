@@ -24,12 +24,11 @@ export default function Home() {
       </section>
       <section className={utilStyles.headingMd}>
         <div className={linksStyles.container}>
-          <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
-          <Link className={linksStyles.linkButton} href="/blog" prefetch>
-            Blog Page
-          </Link>
           <Link className={linksStyles.linkButton} href="/about" prefetch>
             About
+          </Link>
+          <Link className={linksStyles.linkButton} href="/blog" prefetch>
+            Blog Page
           </Link>
           <Link className={linksStyles.linkButton} href="/projects" prefetch>
             Projects
@@ -39,6 +38,7 @@ export default function Home() {
           <Link className={linksStyles.linkButton} href="/contact" prefetch>
             Contact
           </Link>
+          <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
           <Link className={linksStyles.linkButton} href="/chatbot" prefetch>
             Praneel-Bot
           </Link>
