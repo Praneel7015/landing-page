@@ -1,5 +1,5 @@
 ---
-title: '"Resist", Resistance Checker'
+title: '"Resist", The Resistance Checker'
 date: "2025-09-18"
 ---
 
@@ -22,6 +22,11 @@ Responsive UI for both mobile and desktop
 - Supported image formats: `.jpg`, `.jpeg`, `.png`, `.webp`. 
 
 Check it out [here!](https://github.com/Praneel7015/resist)
+
+## Future Ideas
+- [] Working Scanner
+- [] App Implementation
+- [] Quality of Life Updates
 
 ## Contribution
 Want to contribute? Create a [Pull request](https://github.com/Praneel7015/resist/pulls). 
