@@ -1,9 +1,9 @@
 ---
-title: "Resist"
-Date : "2025-09-18"
+title: '"Resist", Resistance Checker'
+date: "2025-09-18"
 ---
 
-# What is Resist
+## What is Resist
 Do you hate having to figure out the resistance of a resistor by using a multimeter or calculating it with a color chart?  
 
 Resist makes it simple. With just one photo of a resistor, you can instantly find out its resistance value. Do not want to use the camera? You can also upload an image from your device.
