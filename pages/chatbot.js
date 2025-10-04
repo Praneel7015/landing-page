@@ -6,7 +6,7 @@ import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
 
 // Configure the chat endpoint via env var; falls back to localhost for dev
-const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHATBOT_ENDPOINT || 'http://localhost:5678/webhook/chat';
+const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHATBOT_ENDPOINT || "https://auraminds.app.n8n.cloud/webhook/chat";
 
 // Tiny markdown parser for bold/italic/inline & fenced code
 function parseMarkdown(text) {
@@ -28,6 +28,17 @@ function parseMarkdown(text) {
 }
 
 export default function ChatbotPage() {
+  // Generate or retrieve unique chat ID from sessionStorage (persists across page refreshes in same tab)
+  const [chatId] = useState(() => {
+    if (typeof window === 'undefined') return 'chat_ssr'; // SSR fallback
+    const storageKey = 'praneel-bot-chat-id';
+    const existing = sessionStorage.getItem(storageKey);
+    if (existing) return existing;
+    const newId = `chat_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
+    sessionStorage.setItem(storageKey, newId);
+    return newId;
+  });
+  
   const [messages, setMessages] = useState(() => [
     {
       id: 'welcome',
@@ -103,7 +114,7 @@ export default function ChatbotPage() {
       const res = await fetch(CHAT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text })
+        body: JSON.stringify({ chatId, text })
       });
       if (!res.ok) throw new Error(`Server responded with ${res.status}`);
       const data = await res.json();
@@ -119,7 +130,7 @@ export default function ChatbotPage() {
       setLoading(false);
       inputRef.current?.focus();
     }
-  }, [CHAT_ENDPOINT, input, loading, pushMessage]);
+  }, [chatId, input, loading, pushMessage]);
 
   const onKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {

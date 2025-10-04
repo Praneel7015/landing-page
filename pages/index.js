@@ -38,6 +38,7 @@ export default function Home() {
           <Link className={linksStyles.linkButton} href="/contact" prefetch>
             Contact
           </Link>
+          <a className={linksStyles.linkButton} href="https://www.gaming.praneel.tech" target="_blank" rel="noopener noreferrer">Gaming site</a>
           <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
           <Link className={linksStyles.linkButton} href="/chatbot" prefetch>
             Praneel-Bot
