@@ -6,7 +6,7 @@ import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
 
 // Configure the chat endpoint via env var; falls back to localhost for dev
-const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHATBOT_ENDPOINT || "https://auraminds.app.n8n.cloud/webhook/chat";
+const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHATBOT_ENDPOINT ;
 
 // Tiny markdown parser for bold/italic/inline & fenced code
 function parseMarkdown(text) {
