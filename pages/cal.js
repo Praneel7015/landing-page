@@ -1,3 +1,11 @@
+/* First make sure that you have installed the package */
+
+/* If you are using yarn */
+// yarn add @calcom/embed-react
+
+/* If you are using npm */
+// npm install @calcom/embed-react
+
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -31,10 +39,6 @@ export default function CalPage() {
     <Layout showBackLink={false}>
       <Head>
         <title>{`${siteTitle} Schedule a Meeting`}</title>
-        <meta
-          name="description"
-          content="Schedule a meeting with Praneel using Cal.com embedded scheduling."
-        />
       </Head>
 
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
@@ -54,9 +58,6 @@ export default function CalPage() {
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Schedule a Meeting</h2>
-        <p style={{ color: 'var(--muted-text)', marginBottom: '1rem' }}>
-          Use the scheduler below to book a meeting with me at your convenience.
-        </p>
 
         <div
           style={{

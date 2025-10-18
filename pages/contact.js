@@ -2,12 +2,15 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
+import contactStyles from '../styles/contact.module.css';
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 // Prefer configuring via env: NEXT_PUBLIC_CONTACT_LAMBDA_URL
 const LAMBDA_URL = process.env.NEXT_PUBLIC_CONTACT_LAMBDA_URL || '';
 
 export default function Contact() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -39,6 +42,11 @@ export default function Contact() {
       scrollToMessage();
     }
   }, [formMessage.text]);
+
+  // Prefetch /cal for instant navigation
+  useEffect(() => {
+    router.prefetch('/cal').catch(() => {});
+  }, [router]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,7 +121,18 @@ export default function Contact() {
   });
 
   return (
-    <Layout showBackLink showCountdownFooter={false}>
+    <Layout
+      showBackLink
+      showCountdownFooter={false}
+      backLinkExtra={(
+        <a
+          href="/cal"
+          className={`${linksStyles.linkButton} ${contactStyles.inlineSchedule}`}
+        >
+          Schedule Call
+        </a>
+      )}
+    >
       <Head>
         <title>{`Contact | ${siteTitle}`}</title>
       </Head>
@@ -189,6 +208,12 @@ export default function Contact() {
           </button>
         </form>
       </section>
+      <a
+        href="/cal"
+        className={`${linksStyles.linkButton} ${contactStyles.floatingSchedule}`}
+      >
+        Schedule Call
+      </a>
     </Layout>
   );
 }
