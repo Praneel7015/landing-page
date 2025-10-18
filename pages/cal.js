@@ -1,78 +1,124 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import linksStyles from '../styles/links.module.css';
+
+const EMBED_SRC = 'https://app.cal.com/embed/embed.js';
+const DEFAULT_CAL_LINK = 'praneels';
+
+function ensureCalScript() {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined') {
+      reject(new Error('Cal embed requires a browser environment.'));
+      return;
+    }
+
+    if (window.Cal) {
+      resolve(window.Cal);
+      return;
+    }
+
+    const scriptId = 'cal-embed-script';
+    let script = document.getElementById(scriptId);
+
+    const handleLoad = () => {
+      cleanup();
+      if (window.Cal) {
+        resolve(window.Cal);
+      } else {
+        reject(new Error('Cal embed script loaded but window.Cal is undefined.'));
+      }
+    };
+
+    const handleError = () => {
+      cleanup();
+      reject(new Error('Failed to load Cal embed script.'));
+    };
+
+    const cleanup = () => {
+      if (script) {
+        script.removeEventListener('load', handleLoad);
+        script.removeEventListener('error', handleError);
+      }
+    };
+
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.src = EMBED_SRC;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    script.addEventListener('load', handleLoad, { once: true });
+    script.addEventListener('error', handleError, { once: true });
+  });
+}
 
 export default function CalPage() {
+  const calLink = useMemo(() => {
+    const fromEnv = process.env.NEXT_PUBLIC_CAL_LINK;
+    return (typeof fromEnv === 'string' && fromEnv.trim().length > 0)
+      ? fromEnv.trim().replace(/^https?:\/\//, '')
+      : DEFAULT_CAL_LINK;
+  }, []);
+
+  const [status, setStatus] = useState('loading');
+  const [error, setError] = useState('');
+  const initializedRef = useRef(false);
+
   useEffect(() => {
-    const scriptSrc = 'https://app.cal.com/embed/embed.js';
+    let isCancelled = false;
 
-    const loadCalScript = () => {
-      return new Promise((resolve, reject) => {
-        // If already loaded, resolve immediately
-        if (window.Cal) {
-          resolve();
-          return;
+    if (!calLink) {
+      setStatus('error');
+      setError('Cal.com link is not configured.');
+      return () => {};
+    }
+
+    ensureCalScript()
+      .then((cal) => {
+        if (isCancelled || initializedRef.current) return;
+
+        cal('init', {
+          origin: 'https://cal.com',
+          attribution: { shouldIncludeBranding: false },
+        });
+
+        cal('inline', {
+          elementOrSelector: '#cal-inline-widget',
+          calLink,
+          config: {
+            layout: 'month_view',
+          },
+          styles: {
+            branding: {
+              brandColor: '#0070f3',
+            },
+          },
+        });
+
+        initializedRef.current = true;
+        if (!isCancelled) {
+          setStatus('ready');
         }
-
-        const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
-        if (existingScript) {
-          existingScript.addEventListener('load', resolve);
-          existingScript.addEventListener('error', reject);
-          return;
+      })
+      .catch((err) => {
+        if (!isCancelled) {
+          setStatus('error');
+          setError(err.message || 'Failed to load scheduler.');
         }
-
-        // Otherwise, create the script tag
-        const script = document.createElement('script');
-        script.src = scriptSrc;
-        script.async = true;
-        script.onload = resolve;
-        script.onerror = reject;
-        document.body.appendChild(script);
       });
-    };
-
-    const initCalWidget = () => {
-      if (!window.Cal) {
-        // Retry after short delay if still not loaded
-        setTimeout(initCalWidget, 200);
-        return;
-      }
-
-      window.Cal.init({ origin: 'https://app.cal.com' });
-
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      window.Cal.createInlineWidget({
-        url: 'https://cal.com/praneels',
-        parentElement: document.getElementById('cal-inline-widget'),
-        config: {},
-        styles: {
-          height: '80vh',
-          width: '100%',
-          minHeight: '600px',
-          backgroundColor: prefersDark ? '#111' : '#fff',
-          color: prefersDark ? '#fff' : '#000',
-          borderRadius: '12px',
-          border: prefersDark ? '1px solid #333' : '1px solid #ddd',
-          boxShadow: prefersDark
-            ? '0 2px 12px rgba(255, 255, 255, 0.1)'
-            : '0 2px 12px rgba(0, 0, 0, 0.1)',
-        },
-      });
-    };
-
-    loadCalScript()
-      .then(() => initCalWidget())
-      .catch((err) => console.error('Failed to load Cal.com script:', err));
 
     return () => {
-      const existing = document.querySelector(`script[src="${scriptSrc}"]`);
-      if (existing) existing.remove();
+      isCancelled = true;
+      const container = document.getElementById('cal-inline-widget');
+      if (container) {
+        container.innerHTML = '';
+      }
     };
-  }, []);
+  }, [calLink]);
 
   return (
     <Layout showBackLink={false}>
@@ -84,7 +130,6 @@ export default function CalPage() {
         />
       </Head>
 
-      {/* Back Link */}
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         <Link
           href="/"
@@ -100,58 +145,46 @@ export default function CalPage() {
         </Link>
       </div>
 
-      {/* Cal Widget Section */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Schedule a Meeting</h2>
-        <p className={linksStyles.description}>
+        <p style={{ color: 'var(--muted-text)', marginBottom: '1rem' }}>
           Use the embedded scheduler below to book a meeting with me at your convenience.
         </p>
 
-        <div
-          id="cal-inline-widget"
-          style={{
-            width: '100%',
-            minHeight: '600px',
-            borderRadius: '12px',
-            overflow: 'hidden',
-            marginTop: '1.5rem',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <p>Loading scheduler...</p>
-        </div>
+        {status === 'error' ? (
+          <div
+            role="alert"
+            style={{
+              border: '1px solid var(--border)',
+              borderRadius: 12,
+              padding: '16px',
+              marginTop: '1.5rem',
+              color: 'var(--error-text)',
+              backgroundColor: 'var(--error-bg)',
+            }}
+          >
+            {error}
+          </div>
+        ) : (
+          <div
+            id="cal-inline-widget"
+            style={{
+              width: '100%',
+              minHeight: '640px',
+              borderRadius: '12px',
+              border: '1px solid var(--border)',
+              marginTop: '1.5rem',
+              overflow: 'hidden',
+              background: 'var(--bg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {status === 'loading' && <p style={{ color: 'var(--muted-text)' }}>Loading scheduler…</p>}
+          </div>
+        )}
       </section>
-
-      <style jsx>{`
-        #cal-inline-widget {
-          transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-          #cal-inline-widget {
-            height: 90vh !important;
-            min-height: 500px;
-          }
-        }
-
-        @media (prefers-color-scheme: dark) {
-          #cal-inline-widget {
-            background-color: #111;
-            color: #fff;
-            border-color: #333;
-          }
-        }
-
-        @media (prefers-color-scheme: light) {
-          #cal-inline-widget {
-            background-color: #fff;
-            color: #000;
-            border-color: #ddd;
-          }
-        }
-      `}</style>
     </Layout>
   );
 }
