@@ -1,18 +1,32 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Cal, { getCalApi } from "@calcom/embed-react";
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 
 export default function CalPage() {
+  const [theme, setTheme] = useState('light');
+
+  // Listen for theme changes (data-theme on <html>)
+  useEffect(() => {
+    const updateTheme = () => {
+      const t = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(t);
+    };
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({"namespace":"30min"});
-      cal("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      const cal = await getCalApi({ namespace: '30min' });
+      cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme });
     })();
-  }, [])
-  
+  }, [theme]);
+
   return (
     <Layout showBackLink={false}>
       <Head>
@@ -58,7 +72,7 @@ export default function CalPage() {
             namespace="30min"
             calLink="praneels/30min"
             style={{width:"100%",height:"100%",overflow:"scroll"}}
-            config={{"layout":"month_view"}}
+            config={{ layout: 'month_view', theme }}
           />
         </div>
       </section>
