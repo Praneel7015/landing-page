@@ -46,6 +46,18 @@ export default function BlogIndex({ allPostsData }) {
           ))}
         </ul>
       </section>
+      <div style={{
+        marginTop: '1.5rem',
+        marginBottom: '0.5rem'
+      }}>
+        <Link href="/" style={{
+          border: '1px solid var(--border)',
+          borderRadius: 10,
+          padding: '8px 12px',
+          textDecoration: 'none',
+          color: 'var(--text)'
+        }}>← Back to home</Link>
+      </div>
     </Layout>
   );
 }

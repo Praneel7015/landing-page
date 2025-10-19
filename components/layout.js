@@ -31,7 +31,7 @@ function getTimeParts() {
   return { days, hours, minutes, seconds };
 }
 
-export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true, compactHeader = false }) {
+export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true, compactHeader = false, backLinkExtra = null }) {
   const [parts, setParts] = useState(getTimeParts());
   useEffect(() => {
     if (!showCountdownFooter) return;
@@ -127,6 +127,7 @@ export default function Layout({ children, home, showBackLink = true, showCountd
           >
             ← Back to home
           </Link>
+          {backLinkExtra}
         </div>
       )}
     </div>

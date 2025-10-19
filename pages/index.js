@@ -40,6 +40,8 @@ export default function Home() {
           </Link>
           <a className={linksStyles.linkButton} href="https://www.gaming.praneel.tech" target="_blank" rel="noopener noreferrer">Gaming site</a>
           <a className={linksStyles.linkButton} href="https://mukticommunity.github.io/">MUKTI</a>
+          <a className={linksStyles.linkButton} href="https://n8n.io/creators/praneel7015/" target="_blank" rel="noopener noreferrer">n8n Profile</a>
+          <a className={linksStyles.linkButton} href="https://fossunited.org/u/praneel_sindhole" target="_blank" rel="noopener noreferrer">FOSS United Profile</a>
           <Link className={linksStyles.linkButton} href="/chatbot" prefetch>
             Praneel-Bot
           </Link>
