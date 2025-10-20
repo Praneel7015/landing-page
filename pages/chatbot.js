@@ -8,20 +8,46 @@ import linksStyles from '../styles/links.module.css';
 // Configure the chat endpoint via env var; falls back to localhost for dev
 const CHAT_ENDPOINT = process.env.NEXT_PUBLIC_CHATBOT_ENDPOINT ;
 
-// Tiny markdown parser for bold/italic/inline & fenced code
+// Enhanced markdown parser with full formatting support
 function parseMarkdown(text) {
   if (!text) return '';
   return text
-    // fenced code blocks ```code```
-    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+    // fenced code blocks with optional language ```lang\ncode```
+    .replace(/```(\w+)?\n?([\s\S]*?)```/g, (match, lang, code) => {
+      const language = lang ? ` class="language-${lang}"` : '';
+      return `<pre><code${language}>${code.trim()}</code></pre>`;
+    })
+    // headings (# H1, ## H2, etc.)
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // blockquotes
+    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+    // horizontal rule
+    .replace(/^---$/gm, '<hr>')
+    // links [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     // bold **text** or __text__
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/__(.*?)__/g, '<strong>$1</strong>')
     // italics *text* or _text_ (non-greedy, not overlapping bold)
     .replace(/(?<!\*)\*(?!\*)([^*\n]+?)\*(?!\*)/g, '<em>$1</em>')
     .replace(/(?<!_)_(?!_)([^_\n]+?)_(?!_)/g, '<em>$1</em>')
+    // strikethrough ~~text~~
+    .replace(/~~(.*?)~~/g, '<del>$1</del>')
     // inline code `code`
-    .replace(/`([^`\n]+?)`/g, '<code>$1</code>')
+    .replace(/`([^`\n]+?)`/g, '<code class="inline-code">$1</code>')
+    // ordered lists (1. item, 2. item)
+    .replace(/^\d+\.\s+(.+)$/gm, '<oli>$1</oli>')
+    // wrap consecutive <oli> items in <ol>
+    .replace(/(<oli>.*<\/oli>)(\s*<oli>.*<\/oli>)*/g, (match) => {
+      const items = match.replace(/<\/?oli>/g, (tag) => tag.replace('oli', 'li'));
+      return `<ol>${items}</ol>`;
+    })
+    // unordered lists (*, -, +)
+    .replace(/^[\*\-\+]\s+(.+)$/gm, '<li>$1</li>')
+    // wrap consecutive <li> items in <ul>
+    .replace(/(<li>.*<\/li>)(\s*<li>.*<\/li>)*/g, (match) => `<ul>${match}</ul>`)
     // line breaks
     .replace(/\n\n/g, '<br><br>')
     .replace(/\n/g, '<br>');
