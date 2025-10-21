@@ -17,13 +17,14 @@ Clone the template from GitHub:
 - Install packages with your preferred manager
 
 ```
-npm install
+npm install pnpm
+pnpm install
 ```
 
 ## 3) Run locally
 
 ```
-npm run dev
+pnpm run dev
 ```
 
 Open http://localhost:3000
@@ -52,7 +53,7 @@ You can deploy to Vercel or any platform that supports Next.js.
 - Build your project:
 
 ```
-npm run build
+pnpm run build
 ```
 
 - Then follow your host’s instructions. On Vercel, import the repo and it will auto‑detect Next.js.
