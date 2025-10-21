@@ -1,6 +1,6 @@
 ---
 title: "Winning and Losing"
-date: "2025-10-11"
+date: "2025-10-12"
 ---
 
 You might recall that I placed 6th in the last AWS Builder Challenge, where the goal was to build a landing page/homepage/website in the cloud using AWS services. The top 5 received keyboards, and it was an open secret that many of them had 'botted' their articles, fair enough.
