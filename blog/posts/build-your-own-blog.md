@@ -78,3 +78,23 @@ Result:
 
 ![My profile](/images/profile.jpg)
 
+## 8) YouTube embeds in posts
+
+You can embed YouTube videos in your blog posts by simply pasting the YouTube URL on its own line. The video will automatically be embedded with responsive styling.
+
+Supported URL formats:
+- Short form: `https://youtu.be/VIDEO_ID`
+- Full form: `https://www.youtube.com/watch?v=VIDEO_ID`
+
+Example:
+
+```
+## Watch this video
+
+https://youtu.be/dQw4w9WgXcQ
+
+More content here...
+```
+
+The video will be automatically converted to an embedded player that works on all devices.
+
