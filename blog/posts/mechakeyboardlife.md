@@ -40,6 +40,6 @@ I've Been thinking of opening it and trying to mod it too!, let me know what wou
   ></iframe>
 </div>
 
-[let me know what you think!](/pages/contact.js)
+[let me know what you think!](/contact)
 
 Thanks for Reading!
