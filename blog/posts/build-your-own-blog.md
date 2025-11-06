@@ -78,3 +78,84 @@ Result:
 
 ![My profile](/images/profile.jpg)
 
+## 8) Video embed
+
+You can include videos in your Markdown posts. This project converts Markdown to HTML with `remark` and `remark-html` (sanitization is disabled in the pipeline), so raw HTML is allowed in your `.md` files. Below are practical patterns.
+
+### Video embeds
+
+- YouTube / external embed (responsive):
+
+```
+<div class="video-container">
+	<iframe
+		src="https://www.youtube.com/embed/VIDEO_ID"
+		title="Descriptive video title"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen
+	></iframe>
+</div>
+```
+
+Replace `VIDEO_ID` with the YouTube ID. The `.video-container` class already exists in `styles/global.css` and makes embeds responsive and nicely framed.
+
+- Native HTML5 video (self-hosted):
+
+```
+<video controls src="/videos/my-video.mp4">
+	Your browser does not support the video element.
+</video>
+```
+
+Place your MP4 (or WebM) file inside the `public/videos/` folder and reference it with an absolute path (`/videos/...`). The `controls` attribute provides built-in play/pause/seek UI.
+
+Result:
+
+<div class="video-container">
+	<iframe
+		src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+		title="Sample video (Big Buck Bunny)"
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen
+	></iframe>
+</div>
+
+## 9) Audio implementation
+
+You can include audio in Markdown posts or use a React component on pages. Both approaches are supported.
+
+- Inline HTML audio (inside Markdown):
+
+```
+<audio controls>
+	<source src="/audio/my-audio.mp3" type="audio/mpeg" />
+	Your browser does not support the audio element.
+</audio>
+```
+
+Put `my-audio.mp3` inside `public/audio/` and reference it as `/audio/my-audio.mp3`.
+
+- React component (for pages/components):
+
+Import the small player at `components/AudioPlayer.js` and use it like this:
+
+```javascript
+import AudioPlayer from '../../components/AudioPlayer';
+
+export default function SamplePage(){
+	return <AudioPlayer src="/audio/my-audio.mp3" title="Sample track" />;
+}
+```
+
+Notes & accessibility:
+- Provide a descriptive `title` or nearby caption so screen reader users know what the audio is.
+- Offer multiple formats (MP3 and OGG) for broader compatibility.
+- Keep files in `public/` so they are served statically; reference them with absolute paths starting with `/`.
+
+Result:
+
+<audio controls>
+	<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3" type="audio/mpeg" />
+	Your browser does not support the audio element.
+</audio>
+
