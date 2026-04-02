@@ -6,7 +6,7 @@ import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
 
-const name = 'Praneel';
+const name = 'Praneel Sindhole';
 export const siteTitle = "Praneel's";
 
 const TARGET_UTC = Date.UTC(2026, 7, 22, 11, 30, 0); // 22 Aug 2026, 17:00 IST = 11:30 UTC
