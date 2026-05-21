@@ -4,21 +4,24 @@ import Layout, { siteTitle } from '../components/layout';
 import homeStyles from '../styles/home.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import { getProjects } from '../lib/projects';
+import { getClientWork } from '../lib/clientWork';
 import Date from '../components/date';
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   const allProjects = getProjects();
+  const allClientWork = getClientWork();
 
   return {
     props: {
       recentPosts: allPostsData.slice(0, 4),
       featuredProjects: allProjects.slice(0, 3),
+      featuredClientWork: allClientWork.slice(0, 3),
     },
   };
 }
 
-export default function Home({ recentPosts = [], featuredProjects = [] }) {
+export default function Home({ recentPosts = [], featuredProjects = [], featuredClientWork = [] }) {
   return (
     <Layout home>
       <Head>
@@ -52,6 +55,7 @@ export default function Home({ recentPosts = [], featuredProjects = [] }) {
         <div className={homeStyles.linksGrid}>
           <Link className={homeStyles.chip} href="/blog">Blog</Link>
           <Link className={homeStyles.chip} href="/projects">Projects</Link>
+          <Link className={homeStyles.chip} href="/client-work">Client Work</Link>
           <Link className={homeStyles.chip} href="/contact">Contact</Link>
           <Link className={homeStyles.chip} href="/about">About</Link>
         </div>
@@ -77,6 +81,35 @@ export default function Home({ recentPosts = [], featuredProjects = [] }) {
               {Array.isArray(project.tags) && project.tags.length > 0 && (
                 <div className={homeStyles.projectTags}>
                   {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className={homeStyles.projectTag}>{tag}</span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Client work preview */}
+      <section className={homeStyles.section}>
+        <div className={homeStyles.sectionHeader}>
+          <span className={homeStyles.sectionLabel}>Client Work</span>
+          <Link href="/client-work" className={homeStyles.viewMore}>View All -&gt;</Link>
+        </div>
+        <div className={homeStyles.projectGrid}>
+          {featuredClientWork.map((work) => (
+            <a
+              key={work.title}
+              href={work.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={homeStyles.projectCard}
+            >
+              <p className={homeStyles.projectName}>{work.title}</p>
+              <p className={homeStyles.projectDesc}>{work.description}</p>
+              {Array.isArray(work.tags) && work.tags.length > 0 && (
+                <div className={homeStyles.projectTags}>
+                  {work.tags.slice(0, 3).map((tag) => (
                     <span key={tag} className={homeStyles.projectTag}>{tag}</span>
                   ))}
                 </div>
