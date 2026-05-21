@@ -2,8 +2,6 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import homeStyles from '../styles/home.module.css';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { getSortedPostsData } from '../lib/posts';
 import { getProjects } from '../lib/projects';
 import Date from '../components/date';
@@ -11,6 +9,7 @@ import Date from '../components/date';
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
   const allProjects = getProjects();
+
   return {
     props: {
       recentPosts: allPostsData.slice(0, 4),
@@ -19,22 +18,14 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ recentPosts, featuredProjects }) {
-  const router = useRouter();
-  useEffect(() => {
-    router.prefetch('/blog').catch(() => {});
-    router.prefetch('/projects').catch(() => {});
-    router.prefetch('/about').catch(() => {});
-    router.prefetch('/contact').catch(() => {});
-  }, [router]);
-
+export default function Home({ recentPosts = [], featuredProjects = [] }) {
   return (
     <Layout home>
       <Head>
         <title>{`${siteTitle} Landing Page`}</title>
       </Head>
 
-      {/* Hero — centered */}
+      {/* Hero - centered */}
       <section className={homeStyles.hero}>
         <p className={homeStyles.heroTag}>Bangalore, India</p>
         <p className={homeStyles.heroBio}>
@@ -52,7 +43,7 @@ export default function Home({ recentPosts, featuredProjects }) {
       {/* Status */}
       <div className={homeStyles.statusBar}>
         <span className={homeStyles.statusText}>
-           Computer Science & Engg · Currently <strong>Procastinating</strong>
+          Computer Science & Engg - Currently <strong>Procastinating</strong>
         </span>
       </div>
 
@@ -70,23 +61,23 @@ export default function Home({ recentPosts, featuredProjects }) {
       <section className={homeStyles.section}>
         <div className={homeStyles.sectionHeader}>
           <span className={homeStyles.sectionLabel}>Latest Work</span>
-          <Link href="/projects" className={homeStyles.viewMore}>All Projects →</Link>
+          <Link href="/projects" className={homeStyles.viewMore}>All Projects -&gt;</Link>
         </div>
         <div className={homeStyles.projectGrid}>
-          {featuredProjects.map((p) => (
+          {featuredProjects.map((project) => (
             <a
-              key={p.title}
-              href={p.url}
+              key={project.title}
+              href={project.url}
               target="_blank"
               rel="noopener noreferrer"
               className={homeStyles.projectCard}
             >
-              <p className={homeStyles.projectName}>{p.title}</p>
-              <p className={homeStyles.projectDesc}>{p.description}</p>
-              {Array.isArray(p.tags) && p.tags.length > 0 && (
+              <p className={homeStyles.projectName}>{project.title}</p>
+              <p className={homeStyles.projectDesc}>{project.description}</p>
+              {Array.isArray(project.tags) && project.tags.length > 0 && (
                 <div className={homeStyles.projectTags}>
-                  {p.tags.slice(0, 3).map((t) => (
-                    <span key={t} className={homeStyles.projectTag}>{t}</span>
+                  {project.tags.slice(0, 3).map((tag) => (
+                    <span key={tag} className={homeStyles.projectTag}>{tag}</span>
                   ))}
                 </div>
               )}
@@ -99,7 +90,7 @@ export default function Home({ recentPosts, featuredProjects }) {
       <section className={homeStyles.section}>
         <div className={homeStyles.sectionHeader}>
           <span className={homeStyles.sectionLabel}>Recent Posts</span>
-          <Link href="/blog" className={homeStyles.viewMore}>All Posts →</Link>
+          <Link href="/blog" className={homeStyles.viewMore}>All Posts -&gt;</Link>
         </div>
         <ul className={homeStyles.postList}>
           {recentPosts.map(({ id, date, title }) => (
@@ -119,7 +110,7 @@ export default function Home({ recentPosts, featuredProjects }) {
       <section className={homeStyles.section}>
         <div className={homeStyles.sectionHeader}>
           <span className={homeStyles.sectionLabel}>Find me</span>
-           <Link href="/chatbot" className={homeStyles.viewMore}>Surprise Me →</Link>
+          <Link href="/chatbot" className={homeStyles.viewMore}>Surprise Me -&gt;</Link>
         </div>
         <div className={homeStyles.linksGrid}>
           <a className={homeStyles.chip} href="https://github.com/Praneel7015" target="_blank" rel="noopener noreferrer">GitHub</a>
