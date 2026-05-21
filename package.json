@@ -9,9 +9,9 @@
     "@calcom/embed-react": "^1.5.3",
     "date-fns": "^4.2.1",
     "gray-matter": "^4.0.3",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "next": "15.5.18",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "styled-jsx": "5.1.6"
