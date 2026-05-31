@@ -225,6 +225,90 @@ button, input, textarea, select {
   color: var(--muted-text);
   font-size: 0.95rem;
 }
+/* Heading anchor links (rehype-autolink-headings) */
+.markdown :where(h1, h2, h3, h4, h5, h6) .heading-anchor {
+  margin-left: 0.4em;
+  color: var(--muted-text);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  font-weight: 500;
+}
+.markdown :where(h1, h2, h3, h4, h5, h6):hover .heading-anchor,
+.markdown :where(h1, h2, h3, h4, h5, h6) .heading-anchor:focus {
+  opacity: 1;
+}
+
+/* Shiki / rehype-pretty-code dual-theme support */
+.markdown figure[data-rehype-pretty-code-figure] {
+  margin: 1em 0;
+}
+.markdown figure[data-rehype-pretty-code-figure] pre {
+  background: var(--hover-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 0.9em;
+  line-height: 1.55;
+}
+.markdown figure[data-rehype-pretty-code-figure] code {
+  display: grid;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+.markdown figure[data-rehype-pretty-code-figure] [data-line] {
+  padding: 0;
+}
+.markdown [data-rehype-pretty-code-title] {
+  font-size: 0.75rem;
+  color: var(--muted-text);
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background: var(--hover-bg);
+}
+.markdown [data-rehype-pretty-code-title] + pre {
+  border-radius: 0 0 8px 8px;
+  margin-top: 0;
+}
+.markdown code[data-line-numbers] {
+  counter-reset: line;
+}
+.markdown code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--muted-text);
+}
+
+/* Light theme by default; dark vars override when data-theme=dark */
+.markdown code,
+.markdown code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+html[data-theme='dark'] .markdown code,
+html[data-theme='dark'] .markdown code span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+/* Inline code outside <pre> shouldn't pick up Shiki backgrounds */
+.markdown :not(pre) > code {
+  background: var(--hover-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--text);
+}
+
 html, body, * {
   scrollbar-width: none;
   -ms-overflow-style: none;

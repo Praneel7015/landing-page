@@ -3,12 +3,13 @@ import Link from 'next/link';
 import Date from '../../../components/date';
 import Layout from '../../../components/layout';
 import SEO from '../../../components/SEO';
-import { getAllPostIds, getPostData } from '../../../lib/posts';
+import Giscus from '../../../components/Giscus';
+import { getAllPostIds, getPostData, getRelatedPosts } from '../../../lib/posts';
 import { SITE_URL, canonicalUrl, absoluteImage } from '../../../lib/seo';
 import utilStyles from '../../../styles/utils.module.css';
 import postStyles from '../../../styles/post.module.css';
 
-export default function Post({ postData }) {
+export default function Post({ postData, relatedPosts = [] }) {
   const url = canonicalUrl(`/blog/posts/${postData.id}`);
   const ogImage = absoluteImage(postData.cover || `/og/${postData.id}.png`);
 
@@ -34,6 +35,8 @@ export default function Post({ postData }) {
     wordCount: postData.wordCount,
     keywords: (postData.tags || []).join(', '),
   };
+
+  const toc = Array.isArray(postData.toc) ? postData.toc : [];
 
   return (
     <Layout showBackLink={false}>
@@ -61,34 +64,84 @@ export default function Post({ postData }) {
         </Link>
       </div>
 
-      <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={postStyles.metaRow}>
-          <span className={utilStyles.lightText}>
-            <Date dateString={postData.date} />
-          </span>
-          <span className={postStyles.metaDot} aria-hidden>·</span>
-          <span className={utilStyles.lightText}>{postData.readingTime} min read</span>
-          {postData.updated && postData.updated !== postData.date && (
-            <>
-              <span className={postStyles.metaDot} aria-hidden>·</span>
-              <span className={utilStyles.lightText}>
-                Updated <Date dateString={postData.updated} />
-              </span>
-            </>
-          )}
-        </div>
-        {Array.isArray(postData.tags) && postData.tags.length > 0 && (
-          <div className={postStyles.tagRow}>
-            {postData.tags.map((tag) => (
-              <Link key={tag} href={`/blog/tag/${tag}`} className={postStyles.tagChip}>
-                #{tag}
-              </Link>
-            ))}
+      <div className={postStyles.postLayout}>
+        <article className={postStyles.postBody}>
+          <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+          <div className={postStyles.metaRow}>
+            <span className={utilStyles.lightText}>
+              <Date dateString={postData.date} />
+            </span>
+            <span className={postStyles.metaDot} aria-hidden>·</span>
+            <span className={utilStyles.lightText}>{postData.readingTime} min read</span>
+            {postData.updated && postData.updated !== postData.date && (
+              <>
+                <span className={postStyles.metaDot} aria-hidden>·</span>
+                <span className={utilStyles.lightText}>
+                  Updated <Date dateString={postData.updated} />
+                </span>
+              </>
+            )}
           </div>
+          {Array.isArray(postData.tags) && postData.tags.length > 0 && (
+            <div className={postStyles.tagRow}>
+              {postData.tags.map((tag) => (
+                <Link key={tag} href={`/blog/tag/${tag}`} className={postStyles.tagChip}>
+                  #{tag}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {toc.length > 2 && (
+            <details className={postStyles.tocMobile}>
+              <summary>On this page</summary>
+              <ul className={postStyles.tocList}>
+                {toc.map((h) => (
+                  <li key={h.id} className={h.depth === 3 ? postStyles.tocItemSub : postStyles.tocItem}>
+                    <a href={`#${h.id}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+
+          <div className="markdown" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        </article>
+
+        {toc.length > 2 && (
+          <aside className={postStyles.tocSidebar} aria-label="Table of contents">
+            <p className={postStyles.tocHeader}>On this page</p>
+            <ul className={postStyles.tocList}>
+              {toc.map((h) => (
+                <li key={h.id} className={h.depth === 3 ? postStyles.tocItemSub : postStyles.tocItem}>
+                  <a href={`#${h.id}`}>{h.text}</a>
+                </li>
+              ))}
+            </ul>
+          </aside>
         )}
-        <div className="markdown" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-      </article>
+      </div>
+
+      {relatedPosts.length > 0 && (
+        <section className={postStyles.relatedSection} aria-labelledby="related-heading">
+          <h2 id="related-heading" className={postStyles.relatedHeading}>Related posts</h2>
+          <ul className={postStyles.cardList}>
+            {relatedPosts.map((p) => (
+              <li key={p.id}>
+                <Link href={`/blog/posts/${p.id}`} className={postStyles.card}>
+                  <p className={postStyles.cardTitle}>{p.title}</p>
+                  {p.description && <p className={postStyles.cardDesc}>{p.description}</p>}
+                  <div className={postStyles.cardMeta}>
+                    <Date dateString={p.date} />
+                    <span className={postStyles.cardMetaDot} aria-hidden>·</span>
+                    <span>{p.readingTime} min read</span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <footer className={postStyles.authorFooter}>
         <Image
@@ -106,6 +159,8 @@ export default function Post({ postData }) {
           <Link href="/about" className={postStyles.authorLink}>More about me →</Link>
         </div>
       </footer>
+
+      <Giscus />
 
       <div style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
         <Link href="/blog" style={{
@@ -132,9 +187,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
+  const relatedPosts = getRelatedPosts(postData, 3);
   return {
     props: {
       postData,
+      relatedPosts,
     },
   };
 }
