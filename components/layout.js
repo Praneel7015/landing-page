@@ -29,7 +29,7 @@ function getTimeParts() {
   return { days, hours, minutes, seconds };
 }
 
-export default function Layout({ children, home, showBackLink = true, showCountdownFooter = true, compactHeader = false, backLinkExtra = null }) {
+export default function Layout({ children, home, showBackLink = true, showCountdownFooter = false, compactHeader = false, backLinkExtra = null }) {
   const [parts, setParts] = useState(getTimeParts());
   useEffect(() => {
     if (!showCountdownFooter) return;
