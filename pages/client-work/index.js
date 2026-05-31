@@ -1,6 +1,6 @@
-import Head from "next/head";
 import Link from "next/link";
-import Layout, { siteTitle } from "../../components/layout";
+import Layout from "../../components/layout";
+import SEO from "../../components/SEO";
 import utilStyles from "../../styles/utils.module.css";
 import projectStyles from "../../styles/projects.module.css";
 import { getClientWork } from "../../lib/clientWork";
@@ -13,9 +13,11 @@ export async function getStaticProps() {
 export default function ClientWorkPage({ clientWork }) {
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{`${siteTitle} Client Work`}</title>
-      </Head>
+      <SEO
+        title="Client Work"
+        description="Websites and web apps Praneel Sindhole has shipped for clients."
+        path="/client-work"
+      />
 
       <div style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}>
         <Link
@@ -33,7 +35,7 @@ export default function ClientWorkPage({ clientWork }) {
       </div>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Client Work</h2>
+        <h1 className={utilStyles.headingXl}>Client Work</h1>
         <ul className={utilStyles.list}>
           {clientWork.map((item) => (
             <li key={item.title} className={utilStyles.listItem}>

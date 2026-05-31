@@ -1,15 +1,12 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import linksStyles from '../styles/links.module.css';
 
 export default function Custom404() {
   return (
   <Layout showBackLink={false} showCountdownFooter={false}>
-      <Head>
-        <title>404 - Page not found</title>
-        <meta name="robots" content="noindex" />
-      </Head>
+      <SEO title="Page Not Found" path="/404" noindex />
       <div style={{
         textAlign: 'center',
         padding: '3rem 0',

@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../../components/layout';
+import Layout from '../../components/layout';
+import SEO from '../../components/SEO';
 import utilStyles from '../../styles/utils.module.css';
 import { getProjects } from '../../lib/projects';
 import projectStyles from '../../styles/projects.module.css';
@@ -13,9 +13,11 @@ export async function getStaticProps() {
 export default function ProjectsPage({ projects }) {
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{`${siteTitle} Projects`}</title>
-      </Head>
+      <SEO
+        title="Projects"
+        description="A list of FOSS, IoT, and web projects built by Praneel Sindhole."
+        path="/projects"
+      />
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         <Link href="/" style={{
           border: '1px solid var(--border)',
@@ -28,7 +30,7 @@ export default function ProjectsPage({ projects }) {
         </Link>
       </div>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Projects</h2>
+        <h1 className={utilStyles.headingXl}>Projects</h1>
         <ul className={utilStyles.list}>
           {projects.map((p) => (
             <li key={p.title} className={utilStyles.listItem}>

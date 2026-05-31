@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Head from 'next/head';
-import Layout, { siteTitle } from '../../components/layout';
+import Layout from '../../components/layout';
+import SEO from '../../components/SEO';
 import utilStyles from '../../styles/utils.module.css';
 import { getSortedPostsData } from '../../lib/posts';
 import Date from '../../components/date';
@@ -36,14 +36,16 @@ export async function getStaticProps() {
 export default function BlogIndex({ allPostsData = [] }) {
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{`${siteTitle} Blog`}</title>
-      </Head>
+      <SEO
+        title="Blog"
+        description="Praneel Sindhole's blog — posts on FOSS, AWS, n8n automation, mechanical keyboards, cybersecurity, and learning in public."
+        path="/blog"
+      />
 
       <BackToHomeLink style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }} />
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Latest Blogs</h2>
+        <h1 className={utilStyles.headingXl}>Latest Blogs</h1>
         <ul className={utilStyles.list} style={{ listStyle: 'none', padding: 0 }}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>

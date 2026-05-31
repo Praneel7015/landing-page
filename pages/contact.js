@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
 import contactStyles from '../styles/contact.module.css';
@@ -133,12 +133,14 @@ export default function Contact() {
         </a>
       )}
     >
-      <Head>
-        <title>{`Contact | ${siteTitle}`}</title>
-      </Head>
+      <SEO
+        title="Contact"
+        description="Get in touch with Praneel Sindhole."
+        path="/contact"
+      />
 
       <section className={utilStyles.headingMd}>
-        <h3 className={utilStyles.headingLg} style={{ marginTop: 0 }}>Get In Touch</h3>
+        <h1 className={utilStyles.headingXl} style={{ marginTop: 0 }}>Get In Touch</h1>
         <p className={utilStyles.lightText}>Have a question or want to connect? Send me a message!</p>
 
         {/* Form message container */}

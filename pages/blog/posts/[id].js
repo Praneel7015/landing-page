@@ -1,16 +1,21 @@
 import Date from "../../../components/date";
 import utilStyles from '../../../styles/utils.module.css';
 import Layout from "../../../components/layout";
+import SEO from "../../../components/SEO";
 import { getAllPostIds, getPostData } from "../../../lib/posts";
-import Head from "next/head";
 import Link from 'next/link';
 
 export default function Post({ postData }) {
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{postData.title}</title>
-      </Head>
+      <SEO
+        title={postData.title}
+        description={postData.description}
+        path={`/blog/posts/${postData.id}`}
+        type="article"
+        publishedTime={postData.date}
+        modifiedTime={postData.updated || postData.date}
+      />
       <div style={{ marginTop: '0.5rem', marginBottom: '0.75rem' }}>
         <Link href="/blog" style={{
           border: '1px solid var(--border)',

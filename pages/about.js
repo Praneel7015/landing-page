@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
 
@@ -8,9 +8,11 @@ import linksStyles from '../styles/links.module.css';
 export default function AboutPage() {
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{`${siteTitle} About Me`}</title>
-      </Head>
+      <SEO
+        title="About Praneel Sindhole"
+        description="About Praneel Sindhole — a Computer Science student in Bangalore who leads MUKTI, builds FOSS projects, and writes about IoT, cybersecurity, and automation."
+        path="/about"
+      />
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         <Link href="/" style={{
           border: '1px solid var(--border)',
@@ -23,7 +25,7 @@ export default function AboutPage() {
         </Link>
       </div>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>About Me</h2>
+        <h1 className={utilStyles.headingXl}>About Praneel Sindhole</h1>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <p>
             Hi, I'm Praneel. I'm a Computer Science and Engineering student in my third year, with a strong interest in free and open-source technology.

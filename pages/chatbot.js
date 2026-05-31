@@ -1,7 +1,7 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 import linksStyles from '../styles/links.module.css';
 
@@ -295,9 +295,7 @@ export default function ChatbotPage() {
 
   return (
   <Layout showBackLink={false} showCountdownFooter={false} compactHeader>
-      <Head>
-    <title>{`${siteTitle} Chatbot`}</title>
-      </Head>
+      <SEO title="Praneel-Bot Chatbot" path="/chatbot" noindex />
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
 

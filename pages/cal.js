@@ -6,11 +6,11 @@
 /* If you are using npm */
 // npm install @calcom/embed-react
 
-import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Cal, { getCalApi } from "@calcom/embed-react";
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 
 export default function CalPage() {
@@ -37,9 +37,7 @@ export default function CalPage() {
 
   return (
     <Layout showBackLink={false}>
-      <Head>
-        <title>{`${siteTitle} Schedule a Meeting`}</title>
-      </Head>
+      <SEO title="Schedule a Meeting" path="/cal" noindex />
 
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
         <Link
@@ -57,7 +55,7 @@ export default function CalPage() {
       </div>
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Schedule a Meeting</h2>
+        <h1 className={utilStyles.headingXl}>Schedule a Meeting</h1>
 
         <div
           style={{

@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/layout.module.css';
 import utilStyles from '../styles/utils.module.css';
@@ -7,7 +6,6 @@ import ThemeToggle from './ThemeToggle';
 import { useEffect, useState } from 'react';
 
 const name = 'Praneel Sindhole';
-export const siteTitle = "Praneel's";
 
 const TARGET_UTC = Date.UTC(2026, 7, 22, 11, 30, 0); // 22 Aug 2026, 17:00 IST = 11:30 UTC
 
@@ -40,22 +38,6 @@ export default function Layout({ children, home, showBackLink = true, showCountd
   }, [showCountdownFooter]);
   return (
     <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico?v=20250815" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="description"
-          content="My personal blog website using Next.js"
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle,
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
       <header className={styles.header}>
         <div style={{ alignSelf: 'flex-end' }}>
           <ThemeToggle />
@@ -74,7 +56,7 @@ export default function Layout({ children, home, showBackLink = true, showCountd
           </>
         ) : (
           <>
-            <Link href="/">
+            <Link href="/" aria-label="Home">
               <Image
                 priority
                 src="/images/profile.jpg"
@@ -84,11 +66,11 @@ export default function Layout({ children, home, showBackLink = true, showCountd
                 alt={name}
               />
             </Link>
-            <h2 className={utilStyles.headingLg}>
+            <p className={utilStyles.headingLg} style={{ margin: '1rem 0' }}>
               <Link href="/" className={utilStyles.colorInherit}>
                 {name}
               </Link>
-            </h2>
+            </p>
           </>
         )}
       </header>

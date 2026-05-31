@@ -1,11 +1,17 @@
 import Link from 'next/link';
-import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
+import { personJsonLd, websiteJsonLd } from '../lib/seo';
 import homeStyles from '../styles/home.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import { getProjects } from '../lib/projects';
 import { getClientWork } from '../lib/clientWork';
 import Date from '../components/date';
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [personJsonLd(), websiteJsonLd()],
+};
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -24,9 +30,7 @@ export async function getStaticProps() {
 export default function Home({ recentPosts = [], featuredProjects = [], featuredClientWork = [] }) {
   return (
     <Layout home>
-      <Head>
-        <title>{`${siteTitle} Landing Page`}</title>
-      </Head>
+      <SEO path="/" jsonLd={homeJsonLd} />
 
       {/* Hero - centered */}
       <section className={homeStyles.hero}>

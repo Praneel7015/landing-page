@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
+import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 import { useEffect, useState } from 'react';
 
@@ -44,13 +44,15 @@ export default function CountdownPage() {
 
   return (
     <Layout showBackLink={false} showCountdownFooter={false}>
-      <Head>
-        <title>{`${siteTitle} Countdown`}</title>
-        <meta name="description" content="Countdown to 22 Aug 2026, 5:00 PM IST" />
-      </Head>
+      <SEO
+        title="Countdown"
+        description="Countdown to 22 Aug 2026, 5:00 PM IST."
+        path="/countdown"
+        noindex
+      />
 
       <section className={utilStyles.headingMd} style={{ textAlign: 'center' }}>
-        <h2 className={utilStyles.headingLg}>Site Blows Up In</h2>
+        <h1 className={utilStyles.headingXl}>Site Blows Up In</h1>
       </section>
 
       <section style={{ marginTop: '1rem', textAlign: 'center' }}>
