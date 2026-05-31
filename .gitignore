@@ -29,3 +29,7 @@ yarn-error.log*
 /public/sitemap.xml
 /public/rss.xml
 /public/og/
+
+# internal docs
+DEPLOY.md
+IMPLEMENTATION-PROMPT.md
