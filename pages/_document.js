@@ -24,6 +24,7 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+        <meta name="google-site-verification" content="XUQFhDYJvHd-CbWXZPBBLvTFJTotgwvpN3lG5-HwsYA" />
         <link
           rel="alternate"
           type="application/rss+xml"
