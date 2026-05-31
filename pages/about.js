@@ -10,7 +10,7 @@ export default function AboutPage() {
     <Layout showBackLink={false}>
       <SEO
         title="About Praneel Sindhole"
-        description="About Praneel Sindhole — a Computer Science student in Bangalore who leads MUKTI, builds FOSS projects, and writes about IoT, cybersecurity, and automation."
+        description="About Praneel Sindhole - a Computer Science student in Bangalore who leads MUKTI, builds FOSS projects, and writes about IoT, cybersecurity, and automation."
         path="/about"
       />
       <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>

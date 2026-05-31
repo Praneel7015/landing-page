@@ -20,7 +20,7 @@ export default function SEO({
   jsonLd,
   noindex = false,
 }) {
-  const finalTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
+  const finalTitle = title ? `${title} - ${SITE_NAME}` : DEFAULT_TITLE;
   const finalDescription = description || DEFAULT_DESCRIPTION;
   const url = canonicalUrl(path);
   const ogImage = absoluteImage(image || DEFAULT_OG_IMAGE);

@@ -1,7 +1,7 @@
 ---
 title: "My First Mechanical Keyboard"
 date: "2025-10-22"
-description: "Unboxing the AWS-prize mechanical keyboard — my first one ever — and weighing up future mods like the tempest tape mod."
+description: "Unboxing the AWS-prize mechanical keyboard - my first one ever - and weighing up future mods like the tempest tape mod."
 tags: ["mechanical-keyboards", "personal"]
 ---
 

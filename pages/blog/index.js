@@ -61,7 +61,7 @@ export default function BlogIndex({ allPostsData = [], series = [], tags = [] })
     <Layout showBackLink={false}>
       <SEO
         title="Blog"
-        description="Praneel Sindhole's blog — posts on FOSS, AWS, n8n automation, mechanical keyboards, cybersecurity, and learning in public."
+        description="Praneel Sindhole's blog - posts on FOSS, AWS, n8n automation, mechanical keyboards, cybersecurity, and learning in public."
         path="/blog"
       />
 

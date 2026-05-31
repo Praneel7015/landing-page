@@ -1,6 +1,8 @@
 {
   "private": true,
+  "packageManager": "pnpm@11.1.3",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "prebuild": "node scripts/generate-sitemap.mjs && node scripts/generate-rss.mjs",
     "build": "next build",
     "dev": "next dev",

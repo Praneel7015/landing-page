@@ -29,7 +29,7 @@ Please provide a new statement id, or remove the existing statement.`
 
 Opening a new instance of the page and redoing the process fixed it somehow.  
 
-Step 6 was trickier because I'm using **Next.js**, while the sample code was plain HTML and CSS. I had to adapt it to match my setup. That worked out, but I noticed the sample code hard-coded environment variables directly into the project—which isn't a good practice. I tried to be "smart" about it, and that’s where I made a mistake.  
+Step 6 was trickier because I'm using **Next.js**, while the sample code was plain HTML and CSS. I had to adapt it to match my setup. That worked out, but I noticed the sample code hard-coded environment variables directly into the project - which isn't a good practice. I tried to be "smart" about it, and that’s where I made a mistake.  
 
 ## The Mistake
 
