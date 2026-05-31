@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Layout from '../../components/layout';
 import SEO from '../../components/SEO';
 import utilStyles from '../../styles/utils.module.css';
+import postStyles from '../../styles/post.module.css';
 import { getSortedPostsData } from '../../lib/posts';
 import Date from '../../components/date';
 
@@ -46,16 +47,30 @@ export default function BlogIndex({ allPostsData = [] }) {
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h1 className={utilStyles.headingXl}>Latest Blogs</h1>
-        <ul className={utilStyles.list} style={{ listStyle: 'none', padding: 0 }}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/blog/posts/${id}`} style={{ color: 'var(--text)' }}>
-                {title}
+        <ul className={postStyles.cardList}>
+          {allPostsData.map((post) => (
+            <li key={post.id}>
+              <Link href={`/blog/posts/${post.id}`} className={postStyles.card}>
+                <p className={postStyles.cardTitle}>{post.title}</p>
+                {post.description && (
+                  <p className={postStyles.cardDesc}>{post.description}</p>
+                )}
+                <div className={postStyles.cardMeta}>
+                  <Date dateString={post.date} />
+                  <span className={postStyles.cardMetaDot} aria-hidden>·</span>
+                  <span>{post.readingTime} min read</span>
+                  {post.tags.length > 0 && (
+                    <>
+                      <span className={postStyles.cardMetaDot} aria-hidden>·</span>
+                      <span className={postStyles.cardTags}>
+                        {post.tags.map((tag) => (
+                          <span key={tag} className={postStyles.cardTag}>{tag}</span>
+                        ))}
+                      </span>
+                    </>
+                  )}
+                </div>
               </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
             </li>
           ))}
         </ul>
