@@ -4,6 +4,7 @@ import Date from '../../../components/date';
 import Layout from '../../../components/layout';
 import SEO from '../../../components/SEO';
 import Giscus from '../../../components/Giscus';
+import ScrollDepth from '../../../components/ScrollDepth';
 import { getAllPostIds, getPostData, getPostsInSeries, getRelatedPosts } from '../../../lib/posts';
 import { SITE_URL, canonicalUrl, absoluteImage } from '../../../lib/seo';
 import utilStyles from '../../../styles/utils.module.css';
@@ -184,6 +185,7 @@ export default function Post({ postData, relatedPosts = [], seriesNav = null }) 
       </footer>
 
       <Giscus />
+      <ScrollDepth slug={postData.id} />
 
       <div style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
         <Link href="/blog" style={{

@@ -16,7 +16,14 @@ export default function ThemeToggle() {
     } catch {}
   }, [theme]);
 
-  const toggle = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+  const toggle = () =>
+    setTheme((t) => {
+      const next = t === 'light' ? 'dark' : 'light';
+      if (typeof window !== 'undefined' && window.umami?.track) {
+        window.umami.track('theme-toggle', { to: next });
+      }
+      return next;
+    });
 
   return (
     <button

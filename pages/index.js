@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
+import OutboundLink from '../components/OutboundLink';
 import { personJsonLd, websiteJsonLd } from '../lib/seo';
 import homeStyles from '../styles/home.module.css';
 import { getSortedPostsData } from '../lib/posts';
@@ -73,11 +74,10 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
         </div>
         <div className={homeStyles.projectGrid}>
           {featuredProjects.map((project) => (
-            <a
+            <OutboundLink
               key={project.title}
               href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              eventName="project-click"
               className={homeStyles.projectCard}
             >
               <p className={homeStyles.projectName}>{project.title}</p>
@@ -89,7 +89,7 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
                   ))}
                 </div>
               )}
-            </a>
+            </OutboundLink>
           ))}
         </div>
       </section>
@@ -102,11 +102,10 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
         </div>
         <div className={homeStyles.projectGrid}>
           {featuredClientWork.map((work) => (
-            <a
+            <OutboundLink
               key={work.title}
               href={work.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              eventName="client-work-click"
               className={homeStyles.projectCard}
             >
               <p className={homeStyles.projectName}>{work.title}</p>
@@ -118,7 +117,7 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
                   ))}
                 </div>
               )}
-            </a>
+            </OutboundLink>
           ))}
         </div>
       </section>
@@ -150,12 +149,12 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
           <Link href="/chatbot" className={homeStyles.viewMore}>Surprise Me -&gt;</Link>
         </div>
         <div className={homeStyles.linksGrid}>
-          <a className={homeStyles.chip} href="https://github.com/Praneel7015" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a className={homeStyles.chip} href="https://www.linkedin.com/in/praneel-sindhole/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className={homeStyles.chip} href="https://mukticommunity.github.io/" target="_blank" rel="noopener noreferrer">MUKTI</a>
-          <a className={homeStyles.chip} href="https://fossunited.org/u/praneel_sindhole" target="_blank" rel="noopener noreferrer">FOSS United</a>
-          <a className={homeStyles.chip} href="https://n8n.io/creators/praneel7015/" target="_blank" rel="noopener noreferrer">n8n</a>
-          <a className={homeStyles.chip} href="https://www.gaming.praneel.tech" target="_blank" rel="noopener noreferrer">Gamer?</a>
+          <OutboundLink className={homeStyles.chip} href="https://github.com/Praneel7015" eventName="find-me-click">GitHub</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://www.linkedin.com/in/praneel-sindhole/" eventName="find-me-click">LinkedIn</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://mukticommunity.github.io/" eventName="find-me-click">MUKTI</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://fossunited.org/u/praneel_sindhole" eventName="find-me-click">FOSS United</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://n8n.io/creators/praneel7015/" eventName="find-me-click">n8n</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://www.gaming.praneel.tech" eventName="find-me-click">Gamer?</OutboundLink>
         </div>
       </section>
     </Layout>

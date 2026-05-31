@@ -13,6 +13,7 @@ const setInitialTheme = `
 
 const umamiWebsiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 const umamiScriptUrl = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL;
+const cfBeaconToken = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
 
 export default function Document() {
   return (
@@ -34,6 +35,13 @@ export default function Document() {
             defer
             src={umamiScriptUrl}
             data-website-id={umamiWebsiteId}
+          />
+        )}
+        {cfBeaconToken && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${cfBeaconToken}"}`}
           />
         )}
       </Head>
