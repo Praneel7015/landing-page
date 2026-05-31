@@ -43,7 +43,7 @@ export default function CountdownPage() {
   }, [done]);
 
   return (
-    <Layout showBackLink={false} showCountdownFooter={false}>
+    <Layout showBackLink={false}>
       <SEO
         title="Countdown"
         description="Countdown to 22 Aug 2026, 5:00 PM IST."

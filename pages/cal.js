@@ -1,23 +1,33 @@
-/* First make sure that you have installed the package */
-
-/* If you are using yarn */
-// yarn add @calcom/embed-react
-
-/* If you are using npm */
-// npm install @calcom/embed-react
-
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import Cal, { getCalApi } from "@calcom/embed-react";
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 
+const Cal = dynamic(() => import('@calcom/embed-react').then((m) => m.default), {
+  ssr: false,
+  loading: () => (
+    <div style={{
+      width: '100%',
+      minHeight: '640px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: 'var(--muted-text)',
+      fontSize: '0.9rem',
+    }}>
+      Loading calendar…
+    </div>
+  ),
+});
+
 export default function CalPage() {
   const [theme, setTheme] = useState('light');
+  const [mounted, setMounted] = useState(false);
 
-  // Listen for theme changes (data-theme on <html>)
   useEffect(() => {
+    setMounted(true);
     const updateTheme = () => {
       const t = document.documentElement.getAttribute('data-theme') || 'light';
       setTheme(t);
@@ -29,11 +39,14 @@ export default function CalPage() {
   }, []);
 
   useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: '30min' });
-      cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme });
-    })();
-  }, [theme]);
+    if (!mounted) return;
+    import('@calcom/embed-react').then(({ getCalApi }) => {
+      (async () => {
+        const cal = await getCalApi({ namespace: '30min' });
+        cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme });
+      })();
+    });
+  }, [theme, mounted]);
 
   return (
     <Layout showBackLink={false}>
@@ -67,12 +80,14 @@ export default function CalPage() {
             background: 'var(--bg)',
           }}
         >
-          <Cal 
-            namespace="30min"
-            calLink="praneels/30min"
-            style={{width:"100%",height:"100%",overflow:"scroll"}}
-            config={{ layout: 'month_view', theme }}
-          />
+          {mounted && (
+            <Cal
+              namespace="30min"
+              calLink="praneels/30min"
+              style={{ width: '100%', height: '100%', overflow: 'scroll' }}
+              config={{ layout: 'month_view', theme }}
+            />
+          )}
         </div>
       </section>
     </Layout>

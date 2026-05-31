@@ -5,7 +5,7 @@ import linksStyles from '../styles/links.module.css';
 
 export default function Custom404() {
   return (
-  <Layout showBackLink={false} showCountdownFooter={false}>
+  <Layout showBackLink={false}>
       <SEO title="Page Not Found" path="/404" noindex />
       <div style={{
         textAlign: 'center',

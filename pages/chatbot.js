@@ -294,7 +294,7 @@ export default function ChatbotPage() {
   }), []);
 
   return (
-  <Layout showBackLink={false} showCountdownFooter={false} compactHeader>
+  <Layout showBackLink={false} compactHeader>
       <SEO title="Praneel-Bot Chatbot" path="/chatbot" noindex />
 
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

@@ -123,7 +123,7 @@ export default function Contact() {
   return (
     <Layout
       showBackLink
-      showCountdownFooter={false}
+     
       backLinkExtra={(
         <a
           href="/cal"
