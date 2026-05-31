@@ -1,6 +1,10 @@
 ---
 title: 'Day 2 of AWS Builder Challenge #2,"Private Cloud Storage-Creating Your Secure S3 Bucket" '
 date: "2025-08-17"
+description: "Day 2 of the AWS Builder Challenge: creating a private S3 bucket, uploading a file, and confirming public access is correctly blocked by default."
+tags: ["aws", "cybersecurity"]
+series: "aws-cloud-day"
+seriesIndex: 2
 ---
 ![Creating Your Secure S3 Bucket img](https://prod-assets.cosmic.aws.dev/a/31LGGuXpkIsrEWC4VofAucGvopF/free.webp)
 

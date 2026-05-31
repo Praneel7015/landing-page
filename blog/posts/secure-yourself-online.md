@@ -1,6 +1,8 @@
---- 
+---
 title: "Securing Yourself Online"
 date: "2025-02-21"
+description: "A technical guide to staying safe online: browser choice, uBlock Origin, Pi-Hole DNS sinkholing, DoH/DoT, and good security hygiene."
+tags: ["cybersecurity", "foss", "linux"]
 ---
 
 (It was originally posted on the mukti blog site and has been reposted here.)

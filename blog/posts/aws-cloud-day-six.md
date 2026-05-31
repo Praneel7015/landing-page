@@ -1,6 +1,10 @@
 ---
 title: 'Day 6 of AWS Builder Challenge #2,"Contact Form-Making Your Website Interactive" '
 date: "2025-08-22"
+description: "Day 6 of the AWS Builder Challenge: wiring a Next.js contact form to AWS Lambda and SNS, and debugging an env-var typo that broke the whole flow."
+tags: ["aws", "web-dev"]
+series: "aws-cloud-day"
+seriesIndex: 6
 ---
 ![Contact Form](https://prod-assets.cosmic.aws.dev/a/31cIvAPbMtQdGG3dRcUpcUgZDGo/free.webp)
 

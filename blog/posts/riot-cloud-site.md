@@ -1,6 +1,8 @@
 ---
 title: "Day 7 of the Rift Rewind Challenge 1, Building a Website"
 date: "2025-10-05"
+description: "Day 7 of the Rift Rewind Challenge: build write-up on a League-of-Legends-themed website using the Riot API. Live at gaming.praneel.tech."
+tags: ["aws", "gaming", "web-dev"]
 ---
 No Updates Here, Check out the Article at [builder.aws.com](https://builder.aws.com/content/33dIbS80WEsaRfdAaPqqKmAlCeZ/rift-rewind-challenge-1-building-a-website).
 

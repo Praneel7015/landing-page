@@ -1,6 +1,8 @@
 ---
 title: "Java Based Command Line Interface RPG!"
 date: "2025-08-11"
+description: "Building a Java command-line RPG themed around the Mahabharata to relearn inheritance, file I/O, and finishing projects with just the fundamentals."
+tags: ["gaming", "student-life"]
 ---
 
 (It was originally posted on my previous blog site and has been moved here.)

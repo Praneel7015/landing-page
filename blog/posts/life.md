@@ -1,6 +1,8 @@
 ---
 title: "Life Update"
 date: "2026-05-30"
+description: "Eight months later: a busted laptop, no job, hackathons that saved my mental health, and the plan to start writing here again."
+tags: ["personal", "student-life"]
 ---
 
 Well, hey there! It's been 8 months... ***jesus***

@@ -1,6 +1,10 @@
 ---
 title: 'Day 3 of the AWS Builder Challenge #2,"Web Content-Building Your Personal Website Files" '
 date: "2025-08-19"
+description: "Day 3 of the AWS Builder Challenge: customising an HTML/CSS template with a dark-mode toggle and uploading the site files to a private S3 bucket."
+tags: ["aws", "web-dev"]
+series: "aws-cloud-day"
+seriesIndex: 3
 ---
 ![Building Your Personal Website Files](https://prod-assets.cosmic.aws.dev/a/31TrDCjeYPfUqFxel8lprTlXpOM/free.webp)
 

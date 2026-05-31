@@ -1,6 +1,8 @@
 ---
 title: "Winning and Losing"
 date: "2025-10-12"
+description: "Winning the AWS Rift Rewind hackathon with a League-of-Legends-themed site, then frying my laptop swapping an SSD without unplugging the battery."
+tags: ["aws", "gaming", "personal"]
 ---
 
 You might recall that I placed 6th in the last AWS Builder Challenge, where the goal was to build a landing page/homepage/website in the cloud using AWS services. The top 5 received keyboards, and it was an open secret that many of them had 'botted' their articles, fair enough.

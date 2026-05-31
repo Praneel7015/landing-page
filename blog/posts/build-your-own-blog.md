@@ -1,6 +1,8 @@
 ---
 title: "Build your own blog from this template"
 date: "2025-08-15"
+description: "A step-by-step guide to cloning this Next.js blog template, customising the layout and posts, and shipping your own personal site in minutes."
+tags: ["web-dev", "foss"]
 ---
 
 This site is built with Next.js (Pages Router). You can clone it, customize it, and publish your own in minutes. Below is a quick guide to get started, based on the README.

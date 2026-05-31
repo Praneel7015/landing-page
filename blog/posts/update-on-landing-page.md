@@ -1,6 +1,8 @@
 ---
 title: "Update on this Blog/Site"
 date: "2025-08-16"
+description: "Announcement: moving this site from Vercel to AWS as part of the AWS Builder Challenge, with planned improvements to design, performance, and SEO."
+tags: ["aws", "web-dev", "personal"]
 ---
 
 AWS is running the AWS Builder Challenge series. The second event is “AWS Builder Challenge #2: Build a website on the cloud.”

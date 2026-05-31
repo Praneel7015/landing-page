@@ -1,6 +1,8 @@
 ---
 title: '"Resist", The Resistance Checker'
 date: "2025-09-18"
+description: "Resist is a Flask + OpenCV web app that reads resistor colour bands from a photo and returns the resistance value in Ω, kΩ, MΩ, or GΩ."
+tags: ["electronics", "foss", "web-dev"]
 ---
 
 ## What is Resist

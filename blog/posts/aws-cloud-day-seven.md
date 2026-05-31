@@ -1,6 +1,10 @@
 ---
 title: 'Day 7 of AWS Builder Challenge #2,"How I Took a Next.js App to Production on AWS " '
 date: "2025-08-23"
+description: "Day 7 of the AWS Builder Challenge: reflection and write-up on taking a Next.js app to production on AWS, ending a week of building in public."
+tags: ["aws", "web-dev"]
+series: "aws-cloud-day"
+seriesIndex: 7
 ---
 ![Day7](/images/day-7.png)
 

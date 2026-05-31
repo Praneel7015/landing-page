@@ -1,6 +1,10 @@
 ---
 title: 'Day 4 of the AWS Builder Challenge #2,"Global Distribution-Making Your Website Accessible Worldwide" '
 date: "2025-08-20"
+description: "Day 4 of the AWS Builder Challenge: putting CloudFront in front of a private S3 bucket to serve a website globally while keeping the origin locked down."
+tags: ["aws", "web-dev"]
+series: "aws-cloud-day"
+seriesIndex: 4
 ---
 ![Making Your Website Accessible Worldwide](https://prod-assets.cosmic.aws.dev/a/31WYdSWGUMPkjkHDCZjca9N6tUS/free.webp)
 

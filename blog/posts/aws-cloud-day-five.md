@@ -1,6 +1,10 @@
 ---
 title: 'Day 5 of AWS Builder Challenge #2,"Professional Deployment-GitHub, Amplify, and Modern Web Development" '
 date: "2025-08-21"
+description: "Day 5 of the AWS Builder Challenge: connecting GitHub to AWS Amplify so every push auto-deploys, plus a custom 404 rewrite rule."
+tags: ["aws", "web-dev"]
+series: "aws-cloud-day"
+seriesIndex: 5
 ---
 
 ![Professional Deployment](https://prod-assets.cosmic.aws.dev/a/31ZXZWyG4hafGKT1tJoh7zrCUkz/free.webp)

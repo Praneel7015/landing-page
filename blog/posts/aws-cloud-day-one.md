@@ -1,6 +1,10 @@
 ---
 title: 'Day 1 of AWS Builder Challenge #2, "Secure Foundation-Setting Up Your AWS Free Tier Account" '
 date: "2025-08-16"
+description: "Day 1 of the AWS Builder Challenge: setting up an AWS Free Tier account with MFA, an IAM admin user, and a $5 budget alert before anything else."
+tags: ["aws", "cybersecurity", "student-life"]
+series: "aws-cloud-day"
+seriesIndex: 1
 ---
 ![Setting Up Your AWS Free Tier Account](https://prod-assets.cosmic.aws.dev/a/31Ij0PVS5EItadUDGpkkiIiN003/free.webp)
 

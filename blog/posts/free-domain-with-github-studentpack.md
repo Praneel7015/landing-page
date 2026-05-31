@@ -1,6 +1,8 @@
 ---
 title: "Get Your Free Domain with the GitHub Student Developer Pack (and connect it to AWS Amplify)"
 date: "2025-08-21"
+description: "How to redeem a one-year free domain (.me, .tech) via the GitHub Student Developer Pack and point it at an AWS Amplify deployment."
+tags: ["web-dev", "aws", "student-life"]
 ---
 
 This guide provides a Step‑by‑step instructions to redeem a one‑year student domain (e.g., .me, .tech) via the GitHub Student Developer Pack and point it to your Amplify site.

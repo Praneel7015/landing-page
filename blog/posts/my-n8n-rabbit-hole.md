@@ -1,6 +1,8 @@
 ---
 title: "My n8n Rabbit Hole"
 date: "2025-08-27"
+description: "Falling down the n8n rabbit hole: automating blog publishing via Discord triggers and Gemini chat models, hosted in Docker on my laptop."
+tags: ["n8n", "foss", "web-dev"]
 ---
 
 ![n8nimage](/images/n8n.png)

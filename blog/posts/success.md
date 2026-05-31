@@ -1,6 +1,8 @@
 ---
 title: "Success"
 date: "2025-08-20"
+description: "Switching this site from Vercel to Amazon S3 + CloudFront: Next.js static export, a URL-rewrite CloudFront Function, and cache invalidation gotchas."
+tags: ["aws", "web-dev"]
 ---
 
 If you are reading this, I have successfully manage to deploy my website on **Amazon S3 + CloudFront**.
