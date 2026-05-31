@@ -214,6 +214,257 @@
   padding: 1px 6px;
 }
 
+.seriesEyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-text);
+}
+
+.seriesIntro {
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.seriesCta {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  transition: background-color 0.12s ease, transform 0.08s ease;
+}
+
+.seriesCta:hover {
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.seriesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: series;
+}
+
+.seriesItem {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.seriesIndex {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--hover-bg);
+  margin-top: 4px;
+}
+
+.seriesLink {
+  flex: 1;
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.12s ease, transform 0.08s ease;
+}
+
+.seriesLink:hover {
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.seriesNavigator {
+  margin: 1rem 0 1.5rem;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--hover-bg);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.seriesNavHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--muted-text);
+}
+
+.seriesNavHeader a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seriesNavPrevNext {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.seriesNavPrevNext a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.seriesNavPrevNext a:hover {
+  text-decoration: underline;
+}
+
+.sectionBlock {
+  margin-top: 2.5rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.viewMore {
+  font-size: 0.78rem;
+  color: var(--muted-text);
+  text-decoration: none;
+}
+
+.viewMore:hover {
+  color: var(--text);
+}
+
+.seriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.seriesGridCard {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.12s ease, transform 0.08s ease;
+}
+
+.seriesGridCard:hover {
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagCloudChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--muted-text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  text-decoration: none;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.tagCloudChip:hover {
+  background: var(--hover-bg);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.tagCloudCount {
+  font-size: 0.7rem;
+  color: var(--muted-text);
+  background: var(--hover-bg);
+  border-radius: 999px;
+  padding: 1px 6px;
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.filterBarLabel {
+  font-size: 0.75rem;
+  color: var(--muted-text);
+  margin-right: 4px;
+}
+
+.filterChip {
+  font-size: 0.75rem;
+  color: var(--muted-text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  background: transparent;
+  font-family: inherit;
+}
+
+.filterChip:hover {
+  background: var(--hover-bg);
+  color: var(--text);
+}
+
+.filterChipActive {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.filterChipActive:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
 @media (min-width: 1024px) {
   .postLayout {
     display: grid;

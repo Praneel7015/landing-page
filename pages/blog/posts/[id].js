@@ -4,12 +4,12 @@ import Date from '../../../components/date';
 import Layout from '../../../components/layout';
 import SEO from '../../../components/SEO';
 import Giscus from '../../../components/Giscus';
-import { getAllPostIds, getPostData, getRelatedPosts } from '../../../lib/posts';
+import { getAllPostIds, getPostData, getPostsInSeries, getRelatedPosts } from '../../../lib/posts';
 import { SITE_URL, canonicalUrl, absoluteImage } from '../../../lib/seo';
 import utilStyles from '../../../styles/utils.module.css';
 import postStyles from '../../../styles/post.module.css';
 
-export default function Post({ postData, relatedPosts = [] }) {
+export default function Post({ postData, relatedPosts = [], seriesNav = null }) {
   const url = canonicalUrl(`/blog/posts/${postData.id}`);
   const ogImage = absoluteImage(postData.cover || `/og/${postData.id}.png`);
 
@@ -89,6 +89,29 @@ export default function Post({ postData, relatedPosts = [] }) {
                   #{tag}
                 </Link>
               ))}
+            </div>
+          )}
+
+          {seriesNav && (
+            <div className={postStyles.seriesNavigator}>
+              <div className={postStyles.seriesNavHeader}>
+                <span>
+                  Part {seriesNav.index} of {seriesNav.total} in series{' '}
+                  <Link href={`/blog/series/${seriesNav.series}`}>{seriesNav.label}</Link>
+                </span>
+              </div>
+              <div className={postStyles.seriesNavPrevNext}>
+                {seriesNav.prev ? (
+                  <Link href={`/blog/posts/${seriesNav.prev.id}`}>
+                    ← {seriesNav.prev.title}
+                  </Link>
+                ) : <span />}
+                {seriesNav.next ? (
+                  <Link href={`/blog/posts/${seriesNav.next.id}`}>
+                    {seriesNav.next.title} →
+                  </Link>
+                ) : <span />}
+              </div>
             </div>
           )}
 
@@ -185,13 +208,39 @@ export async function getStaticPaths() {
   };
 }
 
+const SERIES_LABELS = {
+  'aws-cloud-day': 'AWS Cloud Day',
+};
+
+function humanize(slug) {
+  return slug.split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+}
+
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
   const relatedPosts = getRelatedPosts(postData, 3);
+
+  let seriesNav = null;
+  if (postData.series) {
+    const posts = getPostsInSeries(postData.series);
+    const idx = posts.findIndex((p) => p.id === postData.id);
+    if (idx >= 0) {
+      seriesNav = {
+        series: postData.series,
+        label: SERIES_LABELS[postData.series] || humanize(postData.series),
+        index: idx + 1,
+        total: posts.length,
+        prev: idx > 0 ? { id: posts[idx - 1].id, title: posts[idx - 1].title } : null,
+        next: idx < posts.length - 1 ? { id: posts[idx + 1].id, title: posts[idx + 1].title } : null,
+      };
+    }
+  }
+
   return {
     props: {
       postData,
       relatedPosts,
+      seriesNav,
     },
   };
 }
