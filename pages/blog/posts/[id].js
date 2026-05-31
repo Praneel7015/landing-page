@@ -11,7 +11,7 @@ import postStyles from '../../../styles/post.module.css';
 
 export default function Post({ postData, relatedPosts = [], seriesNav = null }) {
   const url = canonicalUrl(`/blog/posts/${postData.id}`);
-  const ogImage = absoluteImage(postData.cover || `/og/${postData.id}.png`);
+  const ogImage = absoluteImage(postData.cover);
 
   const blogPostingJsonLd = {
     '@context': 'https://schema.org',
@@ -44,7 +44,7 @@ export default function Post({ postData, relatedPosts = [], seriesNav = null }) 
         title={postData.title}
         description={postData.description}
         path={`/blog/posts/${postData.id}`}
-        image={postData.cover || `/og/${postData.id}.png`}
+        image={postData.cover || undefined}
         type="article"
         publishedTime={postData.date}
         modifiedTime={postData.updated || postData.date}

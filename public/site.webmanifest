@@ -1,0 +1,11 @@
+{
+  "name": "Praneel Sindhole",
+  "short_name": "Praneel",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "any" }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
