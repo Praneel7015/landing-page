@@ -65,7 +65,7 @@ export default function Post({ postData, relatedPosts = [], seriesNav = null }) 
         </Link>
       </div>
 
-      <div className={postStyles.postLayout}>
+      <div className={toc.length > 2 ? postStyles.postLayout : undefined}>
         <article className={postStyles.postBody}>
           <h1 className={utilStyles.headingXl}>{postData.title}</h1>
           <div className={postStyles.metaRow}>
