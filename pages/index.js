@@ -151,9 +151,11 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
         <div className={homeStyles.linksGrid}>
           <OutboundLink className={homeStyles.chip} href="https://github.com/Praneel7015" eventName="find-me-click">GitHub</OutboundLink>
           <OutboundLink className={homeStyles.chip} href="https://www.linkedin.com/in/praneel-sindhole/" eventName="find-me-click">LinkedIn</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="mailto:praneel@sindhole.com" eventName="find-me-click">Mail</OutboundLink>
           <OutboundLink className={homeStyles.chip} href="https://mukticommunity.github.io/" eventName="find-me-click">MUKTI</OutboundLink>
           <OutboundLink className={homeStyles.chip} href="https://fossunited.org/u/praneel_sindhole" eventName="find-me-click">FOSS United</OutboundLink>
           <OutboundLink className={homeStyles.chip} href="https://n8n.io/creators/praneel7015/" eventName="find-me-click">n8n</OutboundLink>
+          <OutboundLink className={homeStyles.chip} href="https://www.highcortisol.xyz/" eventName="find-me-click">High Cortisol</OutboundLink>
           <OutboundLink className={homeStyles.chip} href="https://www.gaming.praneel.tech" eventName="find-me-click">Gamer?</OutboundLink>
         </div>
       </section>
