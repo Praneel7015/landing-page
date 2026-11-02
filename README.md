@@ -1,5 +1,10 @@
 # Landing + Blog (Next.js Pages Router)
 
+[![CI](https://github.com/Praneel7015/landing-page/actions/workflows/ci.yml/badge.svg)](https://github.com/Praneel7015/landing-page/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Praneel7015/landing-page/actions/workflows/codeql.yml/badge.svg)](https://github.com/Praneel7015/landing-page/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Praneel7015/landing-page/badge)](https://scorecard.dev/viewer/?uri=github.com/Praneel7015/landing-page)
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Praneel7015/landing-page?utm_source=oss&utm_medium=github&utm_campaign=Praneel7015/landing-page&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
+
 A simple personal landing page with a blog, built on the Next.js Pages Router tutorial and customized to my liking.
 
 ### Why I made this

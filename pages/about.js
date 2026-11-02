@@ -28,19 +28,19 @@ export default function AboutPage() {
         <h1 className={utilStyles.headingXl}>About Praneel Sindhole</h1>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <p>
-            Hi, I'm Praneel. I'm a Computer Science and Engineering student in my third year, with a strong interest in free and open-source technology.
+            Hi, I&apos;m Praneel. I&apos;m a Computer Science and Engineering student in my third year, with a strong interest in free and open-source technology.
           <br/>
           <br/>
             My main areas of focus are IoT and electronics, programming for FOSS projects, and cybersecurity. What drives me is the idea of building projects and products that people actually use and that make a positive impact.
           <br/>
           <br/>
-            I currently lead my college's FOSS club, Mukti!, where we organize events and seminars around open-source technology. Feel free to check out our work.
+            I currently lead my college&apos;s FOSS club, Mukti!, where we organize events and seminars around open-source technology. Feel free to check out our work.
           <br/>
           <br/>
             Beyond tech, I enjoy playing video games, Tennis, and other sports. I also spend alot of my free time at the gym.
           <br/>
           <br/>
-            If you'd like to get in touch, just click the contact button below!
+            If you&apos;d like to get in touch, just click the contact button below!
           </p>
           <div style={{
           marginTop: '1.5rem',

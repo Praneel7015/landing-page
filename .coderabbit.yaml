@@ -3,6 +3,7 @@ language: en-US
 reviews:
   profile: chill
   high_level_summary: true
+  changed_files_summary: true
   poem: false
   review_status: true
   path_filters:
@@ -12,6 +13,7 @@ reviews:
     - "!public/sitemap.xml"
     - "!public/rss.xml"
     - "!public/og/**"
+    - "!CHANGELOG.md"
   path_instructions:
     - path: "pages/**/*.js"
       instructions: |
@@ -36,6 +38,13 @@ reviews:
         match existing posts, links work, and code blocks have a language.
     - path: "scripts/**/*.mjs"
       instructions: Build-time sitemap and RSS generators. Output must stay valid XML with absolute URLs.
+    - path: ".github/**"
+      instructions: |
+        Actions must stay pinned to full commit SHAs with a version comment,
+        jobs should use least-privilege permissions, and checkout should set
+        persist-credentials: false.
+    - path: "lighthouserc.json"
+      instructions: Assertions are warn-level on purpose while baselines settle; flag budgets loosened without a reason.
   pre_merge_checks:
     docstrings:
       mode: "off"
@@ -45,6 +54,8 @@ reviews:
     base_branches:
       - "^main$"
   tools:
+    eslint:
+      enabled: true
     gitleaks:
       enabled: true
     actionlint:
