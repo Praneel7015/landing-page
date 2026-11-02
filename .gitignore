@@ -33,3 +33,6 @@ yarn-error.log*
 # internal docs
 DEPLOY.md
 IMPLEMENTATION-PROMPT.md
+
+# Lighthouse CI
+.lighthouseci/
