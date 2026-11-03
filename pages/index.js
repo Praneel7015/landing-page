@@ -43,7 +43,7 @@ export default function Home({ recentPosts = [], featuredProjects = [], featured
           <a href="https://mukticommunity.github.io/" className={homeStyles.heroBioLink}>
             MUKTI
           </a>
-          , my College's Open-Source Club, and spend way too much time automating
+          , my College&apos;s Open-Source Club, and spend way too much time automating
           things.
         </p>
       </section>
