@@ -1,9 +1,10 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
+import { useDocumentTheme, useHasMounted } from '../lib/useDocumentTheme';
 
 const Cal = dynamic(() => import('@calcom/embed-react').then((m) => m.default), {
   ssr: false,
@@ -23,20 +24,8 @@ const Cal = dynamic(() => import('@calcom/embed-react').then((m) => m.default), 
 });
 
 export default function CalPage() {
-  const [theme, setTheme] = useState('light');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const updateTheme = () => {
-      const t = document.documentElement.getAttribute('data-theme') || 'light';
-      setTheme(t);
-    };
-    updateTheme();
-    const observer = new MutationObserver(updateTheme);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => observer.disconnect();
-  }, []);
+  const theme = useDocumentTheme();
+  const mounted = useHasMounted();
 
   useEffect(() => {
     if (!mounted) return;

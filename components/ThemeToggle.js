@@ -1,29 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useDocumentTheme } from '../lib/useDocumentTheme';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('light');
+  const theme = useDocumentTheme();
 
-  useEffect(() => {
-    const attr = document.documentElement.getAttribute('data-theme');
-    const initial = attr || 'light';
-    setTheme(initial);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+  const toggle = () => {
+    const next = theme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
     try {
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('theme', next);
     } catch {}
-  }, [theme]);
-
-  const toggle = () =>
-    setTheme((t) => {
-      const next = t === 'light' ? 'dark' : 'light';
-      if (typeof window !== 'undefined' && window.umami?.track) {
-        window.umami.track('theme-toggle', { to: next });
-      }
-      return next;
-    });
+    if (window.umami?.track) {
+      window.umami.track('theme-toggle', { to: next });
+    }
+  };
 
   return (
     <button
