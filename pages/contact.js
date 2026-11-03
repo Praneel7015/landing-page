@@ -5,6 +5,7 @@ import linksStyles from '../styles/links.module.css';
 import contactStyles from '../styles/contact.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 // Prefer configuring via env: NEXT_PUBLIC_CONTACT_LAMBDA_URL
 const LAMBDA_URL = process.env.NEXT_PUBLIC_CONTACT_LAMBDA_URL || '';
@@ -125,12 +126,12 @@ export default function Contact() {
       showBackLink
      
       backLinkExtra={(
-        <a
+        <Link
           href="/cal"
           className={`${linksStyles.linkButton} ${contactStyles.inlineSchedule}`}
         >
           Schedule Call
-        </a>
+        </Link>
       )}
     >
       <SEO
@@ -210,12 +211,12 @@ export default function Contact() {
           </button>
         </form>
       </section>
-      <a
+      <Link
         href="/cal"
         className={`${linksStyles.linkButton} ${contactStyles.floatingSchedule}`}
       >
         Schedule Call
-      </a>
+      </Link>
     </Layout>
   );
 }

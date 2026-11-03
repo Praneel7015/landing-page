@@ -1,2 +1,6 @@
 allowBuilds:
   sharp: false
+
+# eslint-config-next loads its plugins by name, so they must be hoisted.
+publicHoistPattern:
+  - '*eslint*'

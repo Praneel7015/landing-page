@@ -18,7 +18,7 @@ export default function Custom404() {
           color: 'var(--text)'
         }}>404</div>
         <p style={{ color: 'var(--muted-text)', marginTop: '0.75rem' }}>
-          Sorry, we couldn't find that page.
+          Sorry, we couldn&apos;t find that page.
         </p>
         <div style={{
           marginTop: '1.5rem',
