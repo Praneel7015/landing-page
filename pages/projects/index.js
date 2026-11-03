@@ -31,6 +31,10 @@ export default function ProjectsPage({ projects }) {
       </div>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h1 className={utilStyles.headingXl}>Projects</h1>
+        <p className={utilStyles.lightText}>
+          Hackathon builds are on{' '}
+          <a href="https://highcortisol.xyz" target="_blank" rel="noopener noreferrer">highcortisol.xyz</a>.
+        </p>
         <ul className={utilStyles.list}>
           {projects.map((p) => (
             <li key={p.title} className={utilStyles.listItem}>

@@ -40,14 +40,18 @@ export default function ClientWorkPage({ clientWork }) {
           {clientWork.map((item) => (
             <li key={item.title} className={utilStyles.listItem}>
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={projectStyles.projectLink}
-                >
-                  {item.title}
-                </a>
+                {item.url ? (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={projectStyles.projectLink}
+                  >
+                    {item.title}
+                  </a>
+                ) : (
+                  <span className={projectStyles.projectLink}>{item.title}</span>
+                )}
                 {item.description && (
                   <small className={utilStyles.lightText}>{item.description}</small>
                 )}
