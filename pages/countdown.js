@@ -3,6 +3,7 @@ import Layout from '../components/layout';
 import SEO from '../components/SEO';
 import utilStyles from '../styles/utils.module.css';
 import { useEffect, useState } from 'react';
+import { useHasMounted } from '../lib/useDocumentTheme';
 
 const TARGET_UTC = Date.UTC(2026, 7, 22, 11, 30, 0); // 22 Aug 2026, 17:00 IST == 11:30 UTC
 
@@ -31,10 +32,9 @@ function getTimeParts() {
 
 export default function CountdownPage() {
   const [{ days, hours, minutes, seconds, done }, setParts] = useState(getTimeParts());
-  const [hasMounted, setHasMounted] = useState(false);
+  const hasMounted = useHasMounted();
 
   useEffect(() => {
-    setHasMounted(true);
     if (done) return;
     const id = setInterval(() => {
       setParts(getTimeParts());
