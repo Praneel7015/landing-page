@@ -4,7 +4,7 @@
 //
 // Server-only env (Vercel project settings, never NEXT_PUBLIC_):
 //   TURNSTILE_SECRET_KEY       Turnstile secret for this site
-//   CONTACT_WHATSAPP_URL       WhatsApp Business short link (https://wa.me/message/...)
+//   CONTACT_WHATSAPP_URL       https://wa.me/91XXXXXXXXXX click-to-chat link (or a Business short link)
 //   CONTACT_ALLOWED_COUNTRIES  comma-separated ISO codes, default "IN"
 
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
