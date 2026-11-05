@@ -13,15 +13,18 @@ function loadTurnstile() {
       script = document.createElement('script');
       script.src = SCRIPT_SRC;
       script.async = true;
-      document.head.appendChild(script);
     }
     script.addEventListener('load', () => resolve(window.turnstile));
-    script.addEventListener('error', reject);
+    script.addEventListener('error', (event) => {
+      script.remove();
+      reject(event);
+    });
+    if (!script.isConnected) document.head.appendChild(script);
   });
 }
 
 const MESSAGES = {
-  region: 'WhatsApp is open to clients in India. Please use the form below or book a call, and I will get back to you.',
+  region: 'WhatsApp is unavailable in your region. Please use the form below or book a call, and I will get back to you.',
   verification: 'Could not verify this browser. Please try again, or use the form below.',
   'not-configured': 'WhatsApp is unavailable right now. Please use the form below.',
   network: 'Network error. Please check your connection and try again.',
@@ -60,10 +63,10 @@ export default function QuickContact() {
           appearance: 'interaction-only',
           callback: setToken,
           'expired-callback': () => setToken(''),
-          'error-callback': () => setToken(''),
+          'error-callback': () => { setToken(''); setError(MESSAGES.verification); },
         });
       })
-      .catch(() => setError(MESSAGES['not-configured']));
+      .catch(() => { if (!cancelled) setError(MESSAGES['not-configured']); });
     return () => {
       cancelled = true;
       if (widgetId.current !== null && window.turnstile) {

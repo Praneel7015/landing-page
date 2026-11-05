@@ -19,9 +19,11 @@ function allowedCountries() {
 
 function isAllowedRegion(req) {
   const country = String(req.headers['x-vercel-ip-country'] || '').toUpperCase();
-  // Vercel always sets the header in production. Off Vercel (local dev)
-  // there is no geo data, so allow it there instead of locking yourself out.
-  if (!country) return process.env.VERCEL !== '1';
+  // Trust geographic headers only on Vercel; local development may omit them.
+  if (process.env.VERCEL !== '1') {
+    return process.env.NODE_ENV === 'development' && (!country || allowedCountries().includes(country));
+  }
+  if (!country) return false;
   return allowedCountries().includes(country);
 }
 
@@ -37,10 +39,10 @@ async function verifyTurnstile(token, ip) {
   });
   if (ip) body.set('remoteip', ip);
   try {
-    const res = await fetch(SITEVERIFY_URL, { method: 'POST', body });
+    const res = await fetch(SITEVERIFY_URL, { method: 'POST', body, signal: AbortSignal.timeout(5000) });
     if (!res.ok) return false;
     const data = await res.json();
-    return data.success === true && (!data.action || data.action === TURNSTILE_ACTION);
+    return data.success === true && data.action === TURNSTILE_ACTION;
   } catch {
     return false;
   }
