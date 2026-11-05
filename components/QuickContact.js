@@ -26,6 +26,7 @@ function loadTurnstile() {
 const MESSAGES = {
   region: 'WhatsApp is unavailable in your region. Please use the form below or book a call, and I will get back to you.',
   verification: 'Could not verify this browser. Please try again, or use the form below.',
+  widget: 'Browser verification failed. Please try again, or use the form below.',
   'not-configured': 'WhatsApp is unavailable right now. Please use the form below.',
   network: 'Network error. Please check your connection and try again.',
 };
@@ -61,9 +62,12 @@ export default function QuickContact() {
           sitekey: SITE_KEY,
           action: 'contact-link',
           appearance: 'interaction-only',
-          callback: setToken,
+          callback: (value) => {
+            setToken(value);
+            setError((current) => current === MESSAGES.widget ? '' : current);
+          },
           'expired-callback': () => setToken(''),
-          'error-callback': () => { setToken(''); setError(MESSAGES.verification); },
+          'error-callback': () => { setToken(''); setError(MESSAGES.widget); },
         });
       })
       .catch(() => { if (!cancelled) setError(MESSAGES['not-configured']); });

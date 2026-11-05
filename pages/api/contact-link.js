@@ -6,6 +6,7 @@
 //   TURNSTILE_SECRET_KEY       Turnstile secret for this site
 //   CONTACT_WHATSAPP_URL       https://wa.me/91XXXXXXXXXX click-to-chat link (or a Business short link)
 //   CONTACT_ALLOWED_COUNTRIES  comma-separated ISO codes, default "IN"
+// Vercel: enable "Automatically expose System Environment Variables" so VERCEL is available.
 
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const TURNSTILE_ACTION = 'contact-link';
@@ -20,9 +21,7 @@ function allowedCountries() {
 function isAllowedRegion(req) {
   const country = String(req.headers['x-vercel-ip-country'] || '').toUpperCase();
   // Trust geographic headers only on Vercel; local development may omit them.
-  if (process.env.VERCEL !== '1') {
-    return process.env.NODE_ENV === 'development' && (!country || allowedCountries().includes(country));
-  }
+  if (process.env.NODE_ENV === 'development' && !country) return true;
   if (!country) return false;
   return allowedCountries().includes(country);
 }
@@ -69,6 +68,10 @@ export default async function handler(req, res) {
 
   const url = whatsappLink();
   if (!url || !process.env.TURNSTILE_SECRET_KEY) {
+    return res.status(503).json({ error: 'not-configured' });
+  }
+
+  if (process.env.NODE_ENV !== 'development' && process.env.VERCEL !== '1') {
     return res.status(503).json({ error: 'not-configured' });
   }
 
