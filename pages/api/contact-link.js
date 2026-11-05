@@ -1,11 +1,10 @@
-// Hands out the WhatsApp / call link only after a Cloudflare Turnstile check
-// and only to visitors from allowed countries, so the phone number never
-// appears in page HTML, JS bundles or anything a crawler can read.
+// Hands out the WhatsApp link only after a Cloudflare Turnstile check and
+// only to visitors from allowed countries, so the link (and the number it
+// opens) never appears in page HTML, JS bundles or anything a crawler reads.
 //
 // Server-only env (Vercel project settings, never NEXT_PUBLIC_):
 //   TURNSTILE_SECRET_KEY       Turnstile secret for this site
 //   CONTACT_WHATSAPP_URL       WhatsApp Business short link (https://wa.me/message/...)
-//   CONTACT_PHONE              E.164 number for calls, e.g. +91XXXXXXXXXX
 //   CONTACT_ALLOWED_COUNTRIES  comma-separated ISO codes, default "IN"
 
 const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
@@ -47,16 +46,9 @@ async function verifyTurnstile(token, ip) {
   }
 }
 
-function linkFor(channel) {
-  if (channel === 'whatsapp') {
-    const url = process.env.CONTACT_WHATSAPP_URL || '';
-    return url.startsWith('https://wa.me/') ? url : null;
-  }
-  if (channel === 'call') {
-    const phone = (process.env.CONTACT_PHONE || '').replace(/[\s-]/g, '');
-    return /^\+\d{8,15}$/.test(phone) ? `tel:${phone}` : null;
-  }
-  return null;
+function whatsappLink() {
+  const url = process.env.CONTACT_WHATSAPP_URL || '';
+  return url.startsWith('https://wa.me/') ? url : null;
 }
 
 export default async function handler(req, res) {
@@ -68,12 +60,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'method' });
   }
 
-  const { channel, token } = req.body || {};
-  if ((channel !== 'whatsapp' && channel !== 'call') || typeof token !== 'string' || !token) {
+  const { token } = req.body || {};
+  if (typeof token !== 'string' || !token) {
     return res.status(400).json({ error: 'bad-request' });
   }
 
-  const url = linkFor(channel);
+  const url = whatsappLink();
   if (!url || !process.env.TURNSTILE_SECRET_KEY) {
     return res.status(503).json({ error: 'not-configured' });
   }
