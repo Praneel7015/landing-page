@@ -57,6 +57,7 @@ A simple personal landing page with a blog, built on the Next.js Pages Router tu
 
 ### Deploy
 - Build with `npm run build` and deploy to your host of choice (I Used Vercel). Importing the repo into Vercel auto-detects Next.js.
+- For the protected WhatsApp button, enable **Automatically expose System Environment Variables** in Vercel project settings. Set the contact variables listed in `.env.example` in Vercel's Environment Variables settings, or in an ignored `.env.local` for local development. The API requires Vercel's `VERCEL` system variable for production country checks; otherwise it returns a configuration error.
 
 ## Attribution
 - Based on the official [Next.js Pages Router Tutorial](https://nextjs.org/learn) and then customized by me.

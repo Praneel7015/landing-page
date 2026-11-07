@@ -6,6 +6,7 @@ import contactStyles from '../styles/contact.module.css';
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import QuickContact from '../components/QuickContact';
 
 // Prefer configuring via env: NEXT_PUBLIC_CONTACT_LAMBDA_URL
 const LAMBDA_URL = process.env.NEXT_PUBLIC_CONTACT_LAMBDA_URL || '';
@@ -143,6 +144,8 @@ export default function Contact() {
       <section className={utilStyles.headingMd}>
         <h1 className={utilStyles.headingXl} style={{ marginTop: 0 }}>Get In Touch</h1>
         <p className={utilStyles.lightText}>Have a question or want to connect? Send me a message!</p>
+
+        <QuickContact />
 
         {/* Form message container */}
         <div
