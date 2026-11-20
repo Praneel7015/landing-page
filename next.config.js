@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
+  async rewrites() {
+    return [
+      {
+        source: '/resume.pdf',
+        destination: 'https://resume.praneel.sindhole.com/latest.pdf',
+      },
+    ];
+  },
   async redirects() {
     return [
       {
